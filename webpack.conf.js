@@ -2,18 +2,14 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-    entry: {
-      index: './src/index.js',
-      kitchen: './src/kitchen.js'
-    },
+  entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './'),
     publicPath: '/',
-    filename: '[name].build.js'
+    filename: 'build.js'
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {

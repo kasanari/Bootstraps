@@ -12,7 +12,7 @@
     import SimpleButton from '../components/SimpleButton.vue'
 
     export default {
-        name: 'app',
+        name: 'index',
         components: {            
             SimpleButton
         }

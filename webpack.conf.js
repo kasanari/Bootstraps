@@ -2,7 +2,8 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/main.js',
+  context: __dirname,
+  entry: ['./src/main.js', 'webpack-hot-middleware/client'],
   output: {
     path: path.resolve(__dirname, './'),
     publicPath: '/',
@@ -49,7 +50,11 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+  ]
 }
 
 if (process.env.NODE_ENV === 'production') {

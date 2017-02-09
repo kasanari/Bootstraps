@@ -9,6 +9,7 @@ var io = require('socket.io')(http);
 var path = require('path');
 var webpack = require("webpack");
 var webpackMiddleware = require("webpack-dev-middleware");
+var webpackHotMiddleware = require("webpack-hot-middleware");
 var webpackConfig = require("./webpack.conf");
 require('./public/data/menu.js');
 
@@ -21,8 +22,10 @@ var devMiddleware = webpackMiddleware(compiler, {
   publicPath: webpackConfig.output.publicPath,
   quiet: false
 });
+var hotMiddleware = webpackHotMiddleware(compiler);
 
 app.use(devMiddleware);
+app.use(hotMiddleware);
 
 // var getMenu = function() {
 //  var menu = require(path.join(__dirname, "views/menu.json"));

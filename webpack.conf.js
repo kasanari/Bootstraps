@@ -50,7 +50,7 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map',
+  devtool: 'inline-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),

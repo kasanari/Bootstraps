@@ -1,6 +1,8 @@
 <template>
+    <!-- Detta kan nog genereras via en funktion -->
     <table>
-        <tr><td><table-button v-bind:table = "1"></table-button></td>
+        <tr>
+            <td><table-button v-bind:table = "1"></table-button></td>
             <td><table-button v-bind:table = "2"></table-button></td>
             <td><table-button v-bind:table = "3"></table-button> </td>
             <td><table-button v-bind:table = "4"></table-button></td>
@@ -42,12 +44,7 @@
 </script>
 
 <style scoped>
-    div {
-        display: inline-block;
-        margin-left: 20px;
-        background-color: crimson;
-        width: 60%;
-        height: 900px;
-        padding: 20px;
+    table {
+        margin: auto;
     }
 </style>

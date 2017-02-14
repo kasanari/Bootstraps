@@ -33,7 +33,7 @@
     div {
         display: inline-block;
         margin-left: 20px;
-        background-color: crimson;
+        background-color: rgba(236, 240, 241,1.0);
         width: 30%;
         height: 900px;
         padding: 20px;

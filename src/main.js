@@ -8,8 +8,8 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 const routes = [
-  { path: '/', component: Index },
-  { path: '/kitchen', component: Kitchen}
+  { path: '/', name: 'index', component: Index },
+  { path: '/kitchen', name: 'kitchen', component: Kitchen}
 ];
 
 const router = new VueRouter({

@@ -1,5 +1,7 @@
 <template>
     <div>
+        <sidebar></sidebar>
+        <menu-area></menu-area>
         <h1>Index osv mm</h1>
         <simple-button buttonText="En knapp"></simple-button>
         <simple-button buttonText="En annan knapp"></simple-button>
@@ -14,11 +16,16 @@
 <script>
     import SimpleButton from '../components/SimpleButton.vue'
     import TableButton from '../components/TableButton.vue'
+    import Sidebar from '../components/Sidebar.vue'
+    import MenuArea from '../components/MenuArea.vue'
     export default {
         name: 'index',
         components: {            
             SimpleButton,
-            TableButton
+            TableButton,
+            Sidebar,
+            MenuArea
+            
         }
     }
 </script>

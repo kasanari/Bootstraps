@@ -11,7 +11,7 @@ var webpack = require("webpack");
 var webpackMiddleware = require("webpack-dev-middleware");
 var webpackHotMiddleware = require("webpack-hot-middleware");
 var webpackConfig = require("./webpack.conf");
-require('./public/data/menu.js');
+require('./data/menu.js');
 
 // Pick arbitrary port
 var port = 3000;

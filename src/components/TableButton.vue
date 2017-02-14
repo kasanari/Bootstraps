@@ -1,7 +1,7 @@
 <template>
     
     <button 
-        v-on:click = "flip" v-bind:class="{active: isActive }"> Jag är bord: {{ table }} </button>
+        v-on:click = "flip" v-bind:class="{active: isActive }"> {{ table }} </button>
     
     
 </template>

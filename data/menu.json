@@ -1,0 +1,28 @@
+{
+    "foods": [{
+            "_id": 1,
+            "label": "Cheese burger",
+            "options": [
+                { "label": "Extra onion", "default": false },
+                { "label": "Extra cheese", "default": false }
+            ]
+        },
+        {
+            "_id": 2,
+            "label": "Vegan burger",
+            "options": [
+                { "label": "Extra onion", "default": false },
+                { "label": "Extra truffle", "default": false }
+            ]
+        }
+    ],
+    "drinks": [{
+            "_id": 1,
+            "label": "Coke"
+        },
+        {
+            "_id": 2,
+            "label": "Beer"
+        }
+    ]
+}

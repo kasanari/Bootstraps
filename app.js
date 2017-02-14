@@ -11,7 +11,6 @@ var webpack = require("webpack");
 var webpackMiddleware = require("webpack-dev-middleware");
 var webpackHotMiddleware = require("webpack-hot-middleware");
 var webpackConfig = require("./webpack.conf");
-require('./data/menu.js');
 
 // Pick arbitrary port
 var port = 3000;
@@ -27,59 +26,17 @@ var hotMiddleware = webpackHotMiddleware(compiler);
 app.use(devMiddleware);
 app.use(hotMiddleware);
 
-// var getMenu = function() {
-//  var menu = require(path.join(__dirname, "views/menu.json"));
-//  return menu;
-//};
-
-// Store orders in a an anonymous class for now.
-var orders = function() {
-    var orders = {};
-
-    var addOrder = function(dish) {
-        orders[dish.orderId] = {};
-        orders[dish.orderId].orderItems = dish.orderItems;
-        orders[dish.orderId].done = false;
-    };
-
-    var getAll = function() { return orders; };
-
-    var markDone = function(orderId) { orders[orderId].done = true; };
-
-    // expose functions
-    return {addOrder: addOrder, getAll: getAll, markDone: markDone};
-}();  // instantiate the class immediately
+// Create a new PubAPI (this controls the WebSocket server)
+let PubAPI = require('./server/pubAPI');
+let pubApi = new PubAPI(io);
 
 // Serve static assets from public/
 app.use(express.static(path.join(__dirname, 'public/')));
-// Serve vue from vue/ directory
-app.use(
-    '/vue', express.static(path.join(__dirname, '/node_modules/vue/dist/')));
 
-// Serve diner.html as root page
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'views/index.html'));
 });
-// Serve kitchen.html as subpage
-app.get('/kitchen', function(req, res) {
-    res.sendFile(path.join(__dirname, 'views/kitchen.html'));
-});
 
-io.on('connection', function(socket) {
-    // Send list of orders and the menu when a client connects
-    io.emit('initialize', {orders: orders.getAll(), menu: getMenu()});
-
-    // When someone orders something
-    socket.on('order', function(dish) {
-        orders.addOrder(dish);
-        io.emit('currentQueue', orders.getAll());
-    });
-
-    socket.on('orderDone', function(orderId) {
-        orders.markDone(orderId);
-        io.emit('currentQueue', orders.getAll());
-    });
-});
 
 http.listen(app.get('port'), function() {
     console.log('Server listening on port ' + app.get('port'));

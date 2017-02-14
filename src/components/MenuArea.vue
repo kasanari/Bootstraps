@@ -25,9 +25,10 @@
 
 <style scoped>
     div {
-        display: inline-block;
+        clear: right;
+        display: inline-flex;
         margin-left: 20px;
-        background-color: crimson;
+        background-color: rgba(236, 240, 241,1.0);
         width: 60%;
         height: 900px;
         padding: 20px;

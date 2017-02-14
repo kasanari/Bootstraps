@@ -1,12 +1,16 @@
 <template>
     <div>
-        <h1> Hej jag är en header </h1>
+        <app-bar />
         <router-view></router-view>
     </div>
 </template>
 
 <script>
+    import AppBar from './components/AppBar.vue';
     export default {
-        name: 'app'
+        name: 'app',
+        components: {
+            AppBar
+        }
     }
 </script>

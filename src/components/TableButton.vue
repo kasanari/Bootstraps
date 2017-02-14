@@ -28,6 +28,9 @@
 
 <style scoped>
 button {
+    margin: 5px 5px;
+    width: 3em;
+    height: 3em;
     background-color: rgb(220, 80, 80);
     padding: 1em;
     border: none;
@@ -45,7 +48,9 @@ button:active {
 }
 
 .active {
-    box-shadow: none;
+    -webkit-box-shadow: inset 0px 10px 0px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: inset 0px 10px 0px 0px rgba(0,0,0,0.2);
+    box-shadow: inset 0px 10px 0px 0px rgba(0,0,0,0.2); 
     transform: translateY(10px);
 }
 </style>

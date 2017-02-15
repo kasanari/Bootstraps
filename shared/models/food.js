@@ -1,3 +1,21 @@
+let { parseOption } = require('./option');
+
+function parseFood(food) {
+    let {
+        _id,
+        _options,
+        _note
+    } = food;
+
+    _options = (_options || {}).map((option) => parseOption(option));
+    _note = _note || '';
+
+    return new Food(
+        _id,
+        _options,
+        _note
+    );
+}
 
 class Food {
     constructor(id, options, note) {
@@ -20,3 +38,4 @@ class Food {
 }
 
 module.exports = Food;
+module.exports.parseFood = parseFood;

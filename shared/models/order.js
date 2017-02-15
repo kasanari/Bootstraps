@@ -1,7 +1,32 @@
+let { parseFood } = require('./food');
+let { parseDrink } = require('./drink');
+
 STATUS = {
-    waiting: Symbol("waiting"),
-    ongoing: Symbol("ongoing"),
-    ready: Symbol("ready")
+    waiting: 0,
+    ongoing: 1,
+    ready: 2
+}
+
+function parseOrder(order) {
+    let {
+        _table,
+        _foods,
+        _drinks,
+        _orderNumber,
+        _status
+    } = order;
+
+    _foods = (_foods || []).map((food) => parseFood(food));
+    _drinks = (_drinks || []).map((drink) => parseDrink(drink));
+    _status = _status || STATUS.waiting
+
+    return new Order(
+        _table,
+        _foods,
+        _drinks,
+        _orderNumber,
+        _status
+    );
 }
 
 function validateStatus(status) {
@@ -10,21 +35,21 @@ function validateStatus(status) {
         status !== STATUS.ready &&
         status !== STATUS.waiting
     ) {
-        throw new Error("No such order status");
+        throw new Error(`No such order status ${status}`);
     }
     return true;
 }
 
 class Order {
     constructor(table, foods, drinks, orderNumber, status) {
-        validateStatus(status);
-
         this._table = table;
-        this._foods = foods;
-        this._drinks = drinks;
+        this._foods = foods || [];
+        this._drinks = drinks || [];
         this._orderNumber = orderNumber;
         this._createdAt = new Date();
         this._status = status || STATUS.waiting;
+
+        validateStatus(this._status);
     }
 
     getFoods() {
@@ -54,3 +79,4 @@ class Order {
 
 module.exports = Order;
 module.exports.STATUS = STATUS;
+module.exports.parseOrder = parseOrder;

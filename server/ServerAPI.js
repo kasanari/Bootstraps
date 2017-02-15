@@ -3,60 +3,7 @@ let Order = require('../shared/models/order');
 let Drink = require('../shared/models/drink');
 let Food = require('../shared/models/food');
 let Option = require('../shared/models/option');
-
-function parseOption(option) {
-    let {
-        label,
-        value
-    } = option;
-
-    return new Option(label, value);
-}
-
-function parseDrink(drink) {
-    let {
-        _id
-    } = drink;
-
-    return new Drink(_id);
-}
-
-function parseFood(food) {
-    let {
-        _id,
-        options,
-        note
-    } = food;
-
-    options = options.map((option) => parseOption(option));
-
-    return new Food(
-        _id,
-        options,
-        note
-    );
-}
-
-function parseOrder(order) {
-    let {
-        table,
-        foods,
-        drinks,
-        orderNumber,
-        status
-    } = order;
-
-    foods = foods.map((food) => parseFood(food));
-    drinks = drinks.map((drink) => parseDrink(drink));
-
-    return new Order(
-        table,
-        foods,
-        drinks,
-        orderNumber,
-        status
-    );
-}
+let { parseOrder } = require('../shared/models/order');
 
 class ServerAPI {
     constructor(io) {
@@ -93,10 +40,10 @@ class ServerAPI {
     }
 
     _upsertOrder(order) {
-        let matchingOrderIndex = this._orders.findIndex((o) => o.orderNumber === order.orderNumber);
+        let matchingOrderIndex = this._orders.findIndex((o) => o.getOrderNumber() === order.getOrderNumber());
         if (matchingOrderIndex !== -1) {
             this._orders[matchingOrderIndex] = order;
-            console.debug(`Order with order number ${order.orderNumber} already exists. Updating server order list instead`);
+            console.log(`Order with order number ${order.getOrderNumber()} already exists. Updating server order list instead`);
         } else {
             this._orders.push(order);
         }
@@ -105,7 +52,7 @@ class ServerAPI {
 
     _broadcastOrders() {
         this._io.emit("orders", {orders: this._orders});
-        console.debug("Broadcasting order list");
+        console.log("Broadcasting order list");
     }
 
 }

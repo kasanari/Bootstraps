@@ -1,3 +1,11 @@
+function parseDrink(drink) {
+    let {
+        _id
+    } = drink;
+
+    return new Drink(_id);
+}
+
 class Drink {
     constructor(id) {
         this._id = id;
@@ -9,3 +17,4 @@ class Drink {
 }
 
 module.exports = Drink;
+module.exports.parseDrink = parseDrink;

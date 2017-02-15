@@ -5,7 +5,8 @@
             "options": [
                 { "label": "Extra onion", "default": false },
                 { "label": "Extra cheese", "default": false }
-            ]
+            ],
+            "img": "https://unsplash.it/200/200/?random&pic=0"
         },
         {
             "_id": 2,
@@ -13,16 +14,19 @@
             "options": [
                 { "label": "Extra onion", "default": false },
                 { "label": "Extra truffle", "default": false }
-            ]
+            ],
+            "img": "https://unsplash.it/200/200/?random&pic=1"
         }
     ],
     "drinks": [{
             "_id": 1,
-            "label": "Coke"
+            "label": "Coke",
+            "img": "https://unsplash.it/200/200/?random&pic=2"
         },
         {
             "_id": 2,
-            "label": "Beer"
+            "label": "Beer",
+            "img": "https://unsplash.it/200/200/?random&pic=3"
         }
     ]
 }

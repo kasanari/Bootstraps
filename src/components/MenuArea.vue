@@ -1,24 +1,20 @@
 <template>
     
-    <div> <h1>MENU GOES HERE</h1> </div>
+    <div>
+        <h1>MENU GOES HERE</h1>
+        <menu-container />
+    </div>
     
     
 </template>
 
 <script>
+    import MenuContainer from './MenuContainer.vue';
+
     export default {
         name: 'menu-area',
-        data: function () {
-            return {
-                
-            }
-        },
-      
-        props: [
-            
-        ],
-        methods: {
-            
+        components: {
+            MenuContainer
         }
     }
 </script>
@@ -26,7 +22,7 @@
 <style scoped>
     div {
         clear: right;
-        display: inline-flex;
+        /*display: inline-flex;*/
         margin-left: 20px;
         background-color: rgba(236, 240, 241,1.0);
         width: 60%;

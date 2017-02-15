@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <main id="main-container">
         <sidebar></sidebar>
         <menu-area></menu-area>
-    </div>
+    </main>
 </template>
 
 <script>
@@ -19,7 +19,7 @@
 </script>
 
 <style scoped>
-h1 {
-    color: red
+#main-container {
+    display: flex;
 }
 </style>

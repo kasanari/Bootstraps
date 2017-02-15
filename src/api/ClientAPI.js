@@ -1,5 +1,7 @@
 import io from 'socket.io-client';
 import menu from '../../shared/data/menu.json';
+import { parseOrder } from '../../shared/models/order';
+import Order from '../../shared/models/order';
 
 export default class ClientAPI {
     constructor(url) {
@@ -36,6 +38,10 @@ export default class ClientAPI {
         return this._orders;
     }
 
+    getOrder() {
+        return this._order;
+    }
+
     addOrdersListener(func) {
         this._onOrdersCallbacks.push(func);
     }
@@ -53,21 +59,17 @@ export default class ClientAPI {
     }
 
     startOrder() {
-        this._order = {
-            foods: [],
-            drinks: [],
-            orderNumber: Math.floor(Math.random() * 1000) //TODO: get ordernumber from server
-        }
+        this._order = new Order(undefined, undefined, undefined, Math.floor(Math.random() * 1000));
         this._callOnOrderChangedListeners();
     }
 
     addFood(food) {
-        this._order.foods.push(food);
+        this._order.getFoods().push(food);
         this._callOnOrderChangedListeners();
     }
 
     addDrink(drink) {
-        this._order.drinks.push(drink);
+        this._order.getDrinks().push(drink);
         this._callOnOrderChangedListeners();
     }
 
@@ -77,11 +79,13 @@ export default class ClientAPI {
     }
 
     _onInitialize(data) {
-        this._orders = data.orders;
+        this._orders = data.orders.map((orderData) => parseOrder(orderData));
+        this._callOnOrdersListeners();
     }
 
     _onOrders(data) {
-        this._orders = data.orders;
+        console.debug("Received new orders");
+        this._orders = data.orders.map((orderData) => parseOrder(orderData));
         this._callOnOrdersListeners();
     }
 

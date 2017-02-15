@@ -10,7 +10,7 @@ export default {
     name: 'order-list',
     data() {
         return {
-            order: null
+            order: this.clientAPI.getOrder()
         }
     },
     created() {

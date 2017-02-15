@@ -13,6 +13,8 @@
 
 <script>
 import MenuList from './MenuList.vue';
+import Food from '../../shared/models/food';
+import Drink from '../../shared/models/drink';
 
 export default {
     name: 'menu-container',
@@ -28,10 +30,12 @@ export default {
         }
     },
     methods: {
-        foodClick(food) {
+        foodClick(foodItem) {
+            let food = new Food(foodItem._id);
             this.clientAPI.addFood(food);
         },
-        drinkClick(drink) {
+        drinkClick(drinkItem) {
+            let drink = new Drink(drinkItem._id);
             this.clientAPI.addDrink(drink);
         }
     }

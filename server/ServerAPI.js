@@ -58,7 +58,7 @@ function parseOrder(order) {
     );
 }
 
-class PubAPI {
+class ServerAPI {
     constructor(io) {
         this._io = io;
         this._orders = [];
@@ -110,4 +110,4 @@ class PubAPI {
 
 }
 
-module.exports = PubAPI;
+module.exports = ServerAPI;

@@ -27,8 +27,8 @@ app.use(devMiddleware);
 app.use(hotMiddleware);
 
 // Create a new PubAPI (this controls the WebSocket server)
-let PubAPI = require('./server/PubAPI');
-let pubApi = new PubAPI(io);
+let ServerAPI = require('./server/ServerAPI');
+let serverApi = new ServerAPI(io);
 
 // Serve static assets from public/
 app.use(express.static(path.join(__dirname, 'public/')));

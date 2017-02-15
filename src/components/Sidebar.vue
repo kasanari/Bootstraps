@@ -4,6 +4,7 @@
         <h1>SIDEBAR</h1>
         <order-list />
         <table-picker></table-picker>
+        <button @click="sendOrder">Send to kitchen</button>
     </div>
     
     
@@ -25,7 +26,9 @@
             
         ],
         methods: {
-            
+            sendOrder() {
+                this.clientAPI.sendOrder();
+            }
         },
         components: {            
           TablePicker,

@@ -16,17 +16,44 @@
                 { "label": "Extra truffle", "default": false }
             ],
             "img": "https://unsplash.it/200/200/?random&pic=1"
+        },
+        {
+            "_id": 3,
+            "label": "Test burger 3",
+            "options": [
+                { "label": "Extra onion", "default": false }
+            ],
+            "img": "https://unsplash.it/200/200/?random&pic=2"
+        },
+        {
+            "_id": 4,
+            "label": "test burger 4",
+            "options": [
+                { "label": "Extra onion", "default": false }
+            ],
+            "img": "https://unsplash.it/200/200/?random&pic=3"
+        },
+        {
+            "_id": 5,
+            "label": "test burger 5",
+            "options": [
+                { "label": "Extra onion", "default": false }
+            ],
+            "img": "https://unsplash.it/200/200/?random&pic=4"
         }
+
+
+
     ],
     "drinks": [{
             "_id": 1,
             "label": "Coke",
-            "img": "https://unsplash.it/200/200/?random&pic=2"
+            "img": "https://unsplash.it/200/200/?random&pic=5"
         },
         {
             "_id": 2,
             "label": "Beer",
-            "img": "https://unsplash.it/200/200/?random&pic=3"
+            "img": "https://unsplash.it/200/200/?random&pic=6"
         }
     ]
 }

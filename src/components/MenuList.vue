@@ -29,6 +29,7 @@
     height: 200px;
     margin-bottom: 1em;
     overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .menu-list > * {

@@ -27,7 +27,7 @@ app.use(devMiddleware);
 app.use(hotMiddleware);
 
 // Create a new PubAPI (this controls the WebSocket server)
-let PubAPI = require('./server/pubAPI');
+let PubAPI = require('./server/PubAPI');
 let pubApi = new PubAPI(io);
 
 // Serve static assets from public/

@@ -63,6 +63,8 @@ class PubAPI {
         this._io = io;
         this._orders = [];
         this._menu = menu;
+
+        this._addIOHandlers();
     }
 
     _addIOHandlers() {
@@ -70,7 +72,7 @@ class PubAPI {
     }
 
     _addSocketHandlers(socket) {
-        socket.on("order")
+        socket.on("order", this._onOrder.bind(this));
     }
 
     _initSocket(socket) {
@@ -103,7 +105,7 @@ class PubAPI {
     }
 
     _broadcastOrders() {
-        this._io.emit("orders", this._orders);
+        this._io.emit("orders", {orders: this._orders});
         console.debug("Broadcasting order list");
     }
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="item-container">
+    <div class="item-container" v-on:click="click">
         <div 
             class="item"
             v-bind:style="itemStyle"
@@ -20,6 +20,11 @@ export default {
             itemStyle: {
                 backgroundImage: 'url(' + this.item.img + ')'
             }
+        }
+    },
+    methods: {
+        click() {
+            this.$emit('itemClick', this.item);
         }
     }
 }

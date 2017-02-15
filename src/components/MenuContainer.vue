@@ -2,9 +2,11 @@
     <div class="menu-container">
         <menu-list 
             title="Food"
+            v-on:itemClick="foodClick"
             :items="foods" />
         <menu-list 
             title="Drinks"
+            v-on:itemClick="drinkClick"
             :items="drinks" />
     </div>
 </template>
@@ -24,6 +26,14 @@ export default {
             foods: menu.foods,
             drinks: menu.drinks
         }
+    },
+    methods: {
+        foodClick(food) {
+            this.clientAPI.addFood(food);
+        },
+        drinkClick(drink) {
+            this.clientAPI.addDrink(drink);
+        }
     }
 }
 </script>
@@ -31,7 +41,6 @@ export default {
 <style scoped>
 .menu-container {
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

@@ -2,7 +2,7 @@
     <div class="menu-list-container">
         <h2>{{title}}</h2>
         <div class="menu-list">
-            <menu-item v-for="item in items" :item="item" />
+            <menu-item v-for="item in items" v-on:itemClick="itemClick" :item="item" />
         </div>
     </div>
 </template>
@@ -18,6 +18,11 @@
         ],
         components: {
             MenuItem
+        },
+        methods: {
+            itemClick(item) {
+                this.$emit('itemClick', item);
+            }
         }
     }
 </script>

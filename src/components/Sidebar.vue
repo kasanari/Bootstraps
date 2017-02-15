@@ -1,12 +1,17 @@
 <template>
     
-    <div> <h1>SIDEBAR</h1> <table-picker></table-picker> </div>
+    <div> 
+        <h1>SIDEBAR</h1>
+        <order-list />
+        <table-picker></table-picker>
+    </div>
     
     
 </template>
 
 <script>
-    import TablePicker from '../components/TablePicker.vue'
+    import TablePicker from '../components/TablePicker.vue';
+    import OrderList from '../components/OrderList.vue';
   
     export default {
         name: 'sidebar',
@@ -23,19 +28,15 @@
             
         },
         components: {            
-          TablePicker  
-            
+          TablePicker,
+          OrderList
         }
     }
 </script>
 
 <style scoped>
     div {
-        display: inline-block;
-        margin-left: 20px;
         background-color: rgba(236, 240, 241,1.0);
-        width: 30%;
-        height: 900px;
         padding: 20px;
     }
 </style>

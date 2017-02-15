@@ -1,7 +1,7 @@
 <template>
     <main id="main-container">
-        <sidebar></sidebar>
-        <menu-area></menu-area>
+        <sidebar id="sidebar"></sidebar>
+        <menu-area id="menu-area"></menu-area>
     </main>
 </template>
 
@@ -21,5 +21,19 @@
 <style scoped>
 #main-container {
     display: flex;
+    width: 100%;
+}
+
+#sidebar {
+    width: 1px;
+    margin-left: 1em;
+    flex-grow: 3;
+}
+
+#menu-area {
+    width: 1px;
+    flex-grow: 7;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 </style>

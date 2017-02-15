@@ -77,7 +77,6 @@ class PubAPI {
 
     _initSocket(socket) {
         socket.emit("initialize", {
-            menu: this._menu,
             orders: this._orders
         });
     }

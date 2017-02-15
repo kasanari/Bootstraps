@@ -1,11 +1,14 @@
 import io from 'socket.io-client';
+import menu from '../../data/menu.json';
 
 export default class ClientAPI {
     constructor(url) {
         // If url is undefined, socket io tries to use same host as client
         this._io = io(url);
-        this._menu = null;
+        this._menu = menu;
         this._orders = null;
+
+        this._onOrdersCallbacks = [];
 
         this._addHandlers();
     }
@@ -22,33 +25,31 @@ export default class ClientAPI {
     }
 
     getMenu() {
-        return this._promiseForProp('_menu');
+        this._menu;
     }
 
     getOrders() {
-        return this._promiseForProp('_orders');
+        this._orders;
     }
 
-    _promiseForProp(prop) {
-        return new Promise((resolve, reject) => {
-            let waitFunc = () => {
-                if (this[prop]) {
-                    resolve(this[prop]);
-                    return;
-                }
+    addOrdersListener(func) {
+        this._onOrdersCallbacks.push(func);
+    }
 
-                setTimeout(waitFunc, 1000);
-            }
-            waitFunc();
-        });
+    removeOrdersListener(funcToRemove) {
+        this._onOrdersCallbacks = this._onOrdersCallbacks.filter((func) => func !== funcToRemove);
     }
 
     _onInitialize(data) {
-        this._menu = data.menu;
         this._orders = data.orders;
     }
 
     _onOrders(data) {
         this._orders = data.orders;
+        this._callOnOrdersListeners();
+    }
+
+    _callOnOrdersListeners() {
+        this._onOrdersCallbacks.forEach((func) => func(this._orders));
     }
 }

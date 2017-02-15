@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
-import menu from '../../data/menu.json';
+import menu from '../../shared/data/menu.json';
 
 export default class ClientAPI {
     constructor(url) {

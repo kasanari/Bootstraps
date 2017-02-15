@@ -1,8 +1,8 @@
-let menu = require("../data/menu.json");
-let Order = require('../models/order');
-let Drink = require('../models/drink');
-let Food = require('../models/food');
-let Option = require('../models/option');
+let menu = require("../shared/data/menu.json");
+let Order = require('../shared/models/order');
+let Drink = require('../shared/models/drink');
+let Food = require('../shared/models/food');
+let Option = require('../shared/models/option');
 
 function parseOption(option) {
     let {

@@ -25,11 +25,11 @@ export default class ClientAPI {
     }
 
     getMenu() {
-        this._menu;
+        return this._menu;
     }
 
     getOrders() {
-        this._orders;
+        return this._orders;
     }
 
     addOrdersListener(func) {

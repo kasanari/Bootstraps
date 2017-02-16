@@ -75,6 +75,12 @@ class Order {
     getTable() {
         return this._table;
     }
+    
+    setStatus(status) {
+        this._status=status;
+        
+        
+    }
 }
 
 module.exports = Order;

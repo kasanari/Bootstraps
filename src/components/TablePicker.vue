@@ -41,7 +41,7 @@
                     this.tables.push(table);
                  
                 }
-                this.clientAPI.setTables(table);
+                this.clientAPI.setTables(this.tables);
             }
         },
          components: {            

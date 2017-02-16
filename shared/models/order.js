@@ -9,19 +9,20 @@ STATUS = {
 
 function parseOrder(order) {
     let {
-        _table,
+        _tables,
         _foods,
         _drinks,
         _orderNumber,
         _status
     } = order;
 
+    
     _foods = (_foods || []).map((food) => parseFood(food));
     _drinks = (_drinks || []).map((drink) => parseDrink(drink));
     _status = _status || STATUS.waiting
 
     return new Order(
-        _table,
+        _tables,
         _foods,
         _drinks,
         _orderNumber,
@@ -41,8 +42,8 @@ function validateStatus(status) {
 }
 
 class Order {
-    constructor(table, foods, drinks, orderNumber, status) {
-        this._table = table;
+    constructor(tables, foods, drinks, orderNumber, status) {
+        this._tables = tables;
         this._foods = foods || [];
         this._drinks = drinks || [];
         this._orderNumber = orderNumber;
@@ -50,6 +51,10 @@ class Order {
         this._status = status || STATUS.waiting;
 
         validateStatus(this._status);
+    }
+
+    setTables(tables) {
+        this._tables = tables;
     }
 
     getFoods() {
@@ -72,8 +77,8 @@ class Order {
         return this._status;
     }
 
-    getTable() {
-        return this._table;
+    getTables() {
+        return this._tables;
     }
     
     setStatus(status) {

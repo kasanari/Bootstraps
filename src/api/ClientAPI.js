@@ -74,7 +74,7 @@ export default class ClientAPI {
     }
     
     setTables(tables) {
-        this._order.tables = tables;
+        this._order.setTables(tables);
         this._callOnOrderChangedListeners();
     }
 

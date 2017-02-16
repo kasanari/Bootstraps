@@ -32,14 +32,16 @@
 <style scoped>
 button {
     margin: 10px 10px;
-    width: 5em;
-    height: 5em;
+    width: 2em;
+    height: 2em;
   
-    padding: 1em;
+    //padding: 1em;
     border: solid 1px;
     border-radius: 2px;
     
     text-decoration: none;
+
+    font-size: 200%;
 }
 
 button:active {

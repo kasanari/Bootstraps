@@ -7,7 +7,7 @@ function parseFood(food) {
         _note
     } = food;
 
-    _options = (_options || {}).map((option) => parseOption(option));
+    _options = (_options || []).map((option) => parseOption(option));
     _note = _note || '';
 
     return new Food(

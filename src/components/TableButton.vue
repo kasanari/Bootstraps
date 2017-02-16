@@ -13,7 +13,7 @@
         name: 'table-button',
         data: function () {
             return {
-                isActive: false
+                isActive: false,
             }
         },
       
@@ -23,6 +23,7 @@
         methods: {
             flip: function () {
                 this.isActive = !this.isActive;
+                this.$emit('toggle', this.table);
             }
         }
     }

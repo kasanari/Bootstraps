@@ -72,6 +72,10 @@ export default class ClientAPI {
         this._order.getDrinks().push(drink);
         this._callOnOrderChangedListeners();
     }
+    
+    setTables(tables) {
+        this._order.tables = tables;
+    }
 
     sendOrder() {
         this._io.emit('order', this._order);

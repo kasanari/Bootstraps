@@ -2,7 +2,7 @@
     <!-- Detta kan nog genereras via en funktion -->
     <table>
         <tr>
-            <td><table-button v-bind:table = "1"></table-button></td>
+            <td><table-button v-on:toggle="toggleTable" v-bind:table = "1"></table-button></td>
             <td><table-button v-bind:table = "2"></table-button></td>
             <td><table-button v-bind:table = "3"></table-button> </td>
             <td><table-button v-bind:table = "4"></table-button></td>
@@ -26,7 +26,7 @@
         name: 'table-picker',
         data: function () {
             return {
-                
+                tables: []
             }
         },
       
@@ -34,11 +34,19 @@
             
         ],
         methods: {
-            
+            toggleTable(table) {
+                if (this.tables.includes(table)) {
+                    this.tables = this.tables.filter( (t) => table !== t );
+                } else {
+                    this.tables.push(table);
+                 
+                }
+                this.clientAPI.setTables(table);
+
+            }
         },
          components: {            
-          TableButton
-            
+          TableButton   
         }
     }
 </script>

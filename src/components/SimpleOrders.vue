@@ -9,7 +9,7 @@
             <ul>
                 
                 <li>Order number: {{order.getOrderNumber()}}</li>
-                <li>Table: {{order.getTable()}}</li>
+                <li>Table: {{order.getTables()}}</li>
                 <li>Food
                     <ul>
                         <li v-for="food in order.getFoods()">
@@ -34,7 +34,7 @@
             <button @click="setStatus(order, 2)">Finish up order</button>
             <ul>
                 <li>Order number: {{order.getOrderNumber()}}</li>
-                <li>Table: {{order.getTable()}}</li>
+                <li>Table: {{order.getTables()}}</li>
                 <li>Food
                     <ul>
                         <li v-for="food in order.getFoods()">
@@ -51,7 +51,7 @@
         <div v-for="order in readyOrders">
             <ul>
                 <li>Order number: {{order.getOrderNumber()}}</li>
-                <li>Table: {{order.getTable()}}</li>
+                <li>Table: {{order.getTables()}}</li>
                 <li>Food
                     <ul>
                         <li v-for="food in order.getFoods()">

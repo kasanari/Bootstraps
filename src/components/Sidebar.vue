@@ -2,7 +2,7 @@
     
     <div> 
         <order-list />
-        <table-picker></table-picker>
+        <table-picker ></table-picker>
         <button @click="sendOrder">Send to kitchen</button>
     </div>
     

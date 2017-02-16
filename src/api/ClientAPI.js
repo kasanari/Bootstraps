@@ -78,6 +78,10 @@ export default class ClientAPI {
         this.startOrder();
     }
 
+    updateOrder(order) {
+        this._io.emit('order', order);
+    }
+
     _onInitialize(data) {
         this._orders = data.orders.map((orderData) => parseOrder(orderData));
         this._callOnOrdersListeners();

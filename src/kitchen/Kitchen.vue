@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1>Köket</h1>
-        <simple-button buttonText="En knapp"></simple-button>
+        <h1>Kitchen</h1>
+           
         <simple-orders />
     </div>
 </template>
@@ -21,7 +21,9 @@
 
 <style scoped>
 h1 {
-    color: blue;
+    color: black;
+    padding-bottom: 20px;
+    padding-left: 20px;
 }
 </style>
 

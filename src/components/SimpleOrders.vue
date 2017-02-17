@@ -2,10 +2,10 @@
 <template>
 <div>    
 <div id ="waiting">
-        <h3>Waiting orders {{ this.waitingOrders.length }}</h3>
+        <h3>Waiting orders: {{ this.waitingOrders.length }}</h3>
         <div v-for="order in waitingOrders">
-            <button @click="setStatus(order, 1)">Pick up order</button>
             
+            <div id ="order">
             <ul>
                 
                 <li>Order number: {{order.getOrderNumber()}}</li>
@@ -25,13 +25,14 @@
                         </li>
                     </ul>
                 </li>
+                <button @click="setStatus(order, 1)" id="button">Pick up order</button>
             </ul>
-    </div> </div>
+    </div> </div></div>
         
         <div id="ongoing">
-        <h3>Ongoing orders {{ this.ongoingOrders.length }}</h3>
+        <h3>Ongoing orders: {{ this.ongoingOrders.length }}</h3>
         <div v-for="order in ongoingOrders">
-            <button @click="setStatus(order, 2)">Finish up order</button>
+            <div id ="order">
             <ul>
                 <li>Order number: {{order.getOrderNumber()}}</li>
                 <li>Table: {{order.getTables()}}</li>
@@ -42,13 +43,16 @@
                         </li>
                     </ul>
                 </li>
+                <button @click="setStatus(order, 2)">Finish up order</button>
                 </ul>
-        </div>
+    </div>
+    </div>
     </div>
         
         <div id="ready">
-        <h3>Ready orders {{ this.readyOrders.length }}</h3>
+        <h3>Ready orders: {{ this.readyOrders.length }}</h3>
         <div v-for="order in readyOrders">
+            <div id ="order">
             <ul>
                 <li>Order number: {{order.getOrderNumber()}}</li>
                 <li>Table: {{order.getTables()}}</li>
@@ -59,8 +63,9 @@
                         </li>
                     </ul>
                 </li>
+                <button @click="printOrder(order)">Print order</button>
             </ul>
-    </div></div>
+    </div></div></div>
     </div>
 </template>
 
@@ -123,28 +128,39 @@ ul {
 ul > ul {
     margin-left: 2em;
 }
+    h3 {
+        
+        margin-bottom: 10px;
+    }
   
     #waiting{
         background-color: lightgray;
-       display: inline-block; 
+        display: inline-block; 
+        width: 240px;
+        
+        vertical-align: top;
+        padding-left: 20px;
+        
     }
     
     #ongoing {
 
     background-color: lightgoldenrodyellow;
     color: black;
-    padding-left:  23px;
-    border: 2px 23px 23px 2px;
-    border:2px  #ffffff;
+    padding-left:  20px;
+    border: 20px 20px 20px 20px;
+    border:2px  lightgrey;
     margin-bottom: 20px;
-    
+    width: 240px;
     display: inline-block;
+    vertical-align: top;
+        margin-left: 20px;
     
     
 }
 
     #ready {
-
+    width: 240px;
     background-color: lightgreen;
     color: black;
     padding-left:  23px;
@@ -153,6 +169,25 @@ ul > ul {
     margin-bottom: 20px;
     align-content: center;
     display: inline-block;
+    vertical-align: top;
+    
+}
+    #order {
+        
+        border: solid 1px;
+        width: 200px;
+        margin-bottom: 30px;
+        padding: 5px 5px 5px 5px;
+        box-shadow:  1px 2px 3px black;
+    }
+    
+    button {
+    background-color: rgb(220, 80, 80);
+    padding: 1em;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    margin-top: 2px;
     
 }
 </style>

@@ -80,12 +80,12 @@ export default {
                 orderTotal = orderTotal + foodItem.price;
             }; 
             
-           for (j=0; j<drinkCount; j++){
-               var drink =order.getDrinks()[i];
-               let menu = this.clientAPI.getMenu();
-                let drinkItem = menu.drinks.find((di) => di._id === drink.getId());
-                orderTotal = orderTotal + drinkItem.price;
-            };
+          // for (j=0; j<drinkCount; j++){
+            //   var drink =order.getDrinks()[i];
+            //   let menu = this.clientAPI.getMenu();
+            //    let drinkItem = menu.drinks.find((di) => di._id === drink.getId());
+            //    orderTotal = orderTotal + drinkItem.price;
+            //};
             return orderTotal;
     }
     }

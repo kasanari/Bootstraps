@@ -18,14 +18,7 @@
                     </ul>
                 </li>
                 
-                <li>Drinks
-                    <ul>
-                        <li v-for="drink in order.getDrinks()">
-                            {{getDrinkLabel(drink)}}
-                        </li>
-                    </ul>
-                </li>
-                <button @click="setStatus(order, 1)" id="button">Pick up order</button>
+                                <button @click="setStatus(order, 1)" id="button">Pick up order</button>
             </ul>
     </div> </div></div>
         

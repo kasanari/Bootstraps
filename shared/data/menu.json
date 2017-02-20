@@ -6,7 +6,7 @@
                 { "label": "Extra onion", "default": false },
                 { "label": "Extra cheese", "default": false }
             ],
-            "img": "https://unsplash.it/200/200/?random&pic=0",
+            "img": "http://lorempixel.com/200/200/food//?random&pic=0",
             "price": 40
         },
         {
@@ -16,7 +16,7 @@
                 { "label": "Extra onion", "default": false },
                 { "label": "Extra truffle", "default": false }
             ],
-            "img": "https://unsplash.it/200/200/?random&pic=1",
+            "img": "http://lorempixel.com/200/200/food//?random&pic=1",
             "price": 40
 
         },
@@ -26,7 +26,7 @@
             "options": [
                 { "label": "Extra onion", "default": false }
             ],
-            "img": "https://unsplash.it/200/200/?random&pic=2",
+            "img": "http://lorempixel.com/200/200/food//?random&pic=2",
             "price": 40
 
         },
@@ -36,7 +36,7 @@
             "options": [
                 { "label": "Extra onion", "default": false }
             ],
-            "img": "https://unsplash.it/200/200/?random&pic=3",
+            "img": "http://lorempixel.com/200/200/food//?random&pic=3",
             "price": 40
 
         },
@@ -46,7 +46,7 @@
             "options": [
                 { "label": "Extra onion", "default": false }
             ],
-            "img": "https://unsplash.it/200/200/?random&pic=4",
+            "img": "http://lorempixel.com/200/200/food//?random&pic=4",
             "price": 40
 
         }
@@ -57,14 +57,14 @@
     "drinks": [{
             "_id": 1,
             "label": "Coke",
-            "img": "https://unsplash.it/200/200/?random&pic=5",
+            "img": "http://lorempixel.com/200/200/food//?random&pic=5",
             "price": 40
 
         },
         {
             "_id": 2,
             "label": "Beer",
-            "img": "https://unsplash.it/200/200/?random&pic=6",
+            "img": "http://lorempixel.com/200/200/food//?random&pic=6",
             "price": 40
 
         }

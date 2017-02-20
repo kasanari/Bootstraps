@@ -11,7 +11,7 @@
         </div>
         <p class="category-label">DRINKS</p>
         <div class="item-container" v-for="drink in order.getDrinks()">
-            <p class="item-name">{{getDrinkLabel(drink)}}</p>
+            <p class="item-name">{{getDrinkLabel(drink)}}, {{getDrinkPrice(drink)}}</p>
         </div>
         <h3> Order Total:  {{getOrderTotal(order)}}</h3>
     </div>
@@ -62,6 +62,12 @@ export default {
 
             return drinkItem.label;
         },
+        getDrinkPrice(drink) {
+            let menu = this.clientAPI.getMenu();
+            let drinkItem = menu.drinks.find((di) => di._id === drink.getId());
+
+            return drinkItem.price;
+        },
         getFoodPrice(food) {
             let menu = this.clientAPI.getMenu();
             let foodItem = menu.foods.find((fi) => fi._id === food.getId());
@@ -80,14 +86,14 @@ export default {
                 orderTotal = orderTotal + foodItem.price;
             }; 
             
-          // for (j=0; j<drinkCount; j++){
-            //   var drink =order.getDrinks()[i];
-            //   let menu = this.clientAPI.getMenu();
-            //    let drinkItem = menu.drinks.find((di) => di._id === drink.getId());
-            //    orderTotal = orderTotal + drinkItem.price;
-            //};
+            for (j=0; j<drinkCount; j++){
+                var drink =order.getDrinks()[j];
+                let menu = this.clientAPI.getMenu();
+                let drinkItem = menu.drinks.find((di) => di._id === drink.getId());
+                orderTotal = orderTotal + drinkItem.price;
+            };
             return orderTotal;
-    }
+        }
     }
 }
 </script>

@@ -1,23 +1,35 @@
 <template>
-    <div>
+    <div class="order-list">
         <h1>Order #{{order.getOrderNumber()}}</h1>
         <h3>Tap items to add orders</h3>
-        <p class="category-label">FOODS</p>
-        <div class="item-container" v-for="food in order.getFoods()">
-            <p class="item-name">{{getFoodLabel(food)}}, {{getFoodPrice(food)}}kr</p>
-            <p class="item-note" v-if="food.getNote() !== ''">
-                {{food.getNote()}}
-            </p>
-        </div>
-        <p class="category-label">DRINKS</p>
-        <div class="item-container" v-for="drink in order.getDrinks()">
-            <p class="item-name">{{getDrinkLabel(drink)}}, {{getDrinkPrice(drink)}}</p>
+        <div class="items-container">
+            <p class="category-label">FOODS</p>
+            <div class="item-container" v-for="food in order.getFoods()">
+                <p class="item-name">{{getFoodLabel(food)}}, {{getFoodPrice(food)}}kr</p>
+                <p class="item-note" v-if="food.getNote() !== ''">
+                    {{food.getNote()}}
+                </p>
+            </div>
+            <p class="category-label">DRINKS</p>
+            <div class="item-container" v-for="drink in order.getDrinks()">
+                <p class="item-name">{{getDrinkLabel(drink)}}, {{getDrinkPrice(drink)}}</p>
+            </div>
         </div>
         <h3> Order Total:  {{getOrderTotal(order)}}</h3>
     </div>
 </template>
 
 <style scoped>
+.order-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.items-container {
+    flex-shrink: 1;
+    overflow-y: auto;
+}
+
 .category-label {
     font-size: 0.8em;
     color: rgba(200, 200, 200, 1);

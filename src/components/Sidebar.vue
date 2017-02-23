@@ -1,7 +1,7 @@
 <template>
     
-    <div> 
-        <order-list />
+    <div class="container"> 
+        <order-list class="order-list"/>
         <table-picker ></table-picker>
         <payment/>
         <button @click="sendOrder">Send to kitchen</button>
@@ -9,6 +9,30 @@
     
     
 </template>
+
+<style scoped>
+    .container {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        background-color: rgba(236, 240, 241,1.0);
+    }
+
+    .order-list {
+        max-height: 30vh;
+    }
+
+    button {
+        display: block;
+        margin: auto;
+        margin-top: 20px;
+        padding: 10px;
+        font-family: inherit;
+        font-size: 150%;
+        font-weight: bold;
+        
+    }
+</style>
 
 <script>
     import Payment from '../components/Payment.vue';
@@ -39,20 +63,3 @@
     }
 </script>
 
-<style scoped>
-    div {
-        background-color: rgba(236, 240, 241,1.0);
-        padding: 20px;
-    }
-    
-    button {
-        display: block;
-        margin: auto;
-        margin-top: 20px;
-        padding: 10px;
-        font-family: inherit;
-        font-size: 150%;
-        font-weight: bold;
-        
-    }
-</style>

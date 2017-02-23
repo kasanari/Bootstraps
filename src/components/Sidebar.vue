@@ -52,7 +52,35 @@
         ],
         methods: {
             sendOrder() {
+                this.printOrder();
                 this.clientAPI.sendOrder();
+                
+                
+            },
+            printOrder() {
+                 var order= this.clientAPI.getOrder();
+                 
+                 let menu = this.clientAPI.getMenu();
+                 var i = order.getFoods().length;
+                var j = order.getDrinks().length;
+                 
+                 console.log("START: Order "+ order.getOrderNumber() + "\n---------");
+                
+                for (var n=0; n<i; n=n+1){
+                    var f=order.getFoods()[n];
+                    let foodItem = menu.foods.find((fi) => fi._id === f.getId());
+                    
+                    console.log(foodItem.label);
+                }  
+                
+                for (var t=0; t<j; t=t+1){
+                    var d=order.getDrinks()[t];
+                    let drinkItem = menu.drinks.find((di) => di._id === d.getId());
+                    
+                    console.log(drinkItem.label);
+                }  
+                console.log ("END: Order "+ order.getOrderNumber() + "\n---------------------------");     
+                
             }
         },
         components: {            

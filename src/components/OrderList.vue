@@ -105,6 +105,10 @@ export default {
                 orderTotal = orderTotal + drinkItem.price;
             };
             return orderTotal;
+        },
+        
+        hasFood(order){
+        return (order.getFoods().length>0)
         }
     }
 }

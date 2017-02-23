@@ -3,11 +3,12 @@
 <div>    
 <div id ="waiting">
         <h3>Waiting orders: {{ this.waitingOrders.length }}</h3>
+        
         <div v-for="order in waitingOrders">
-            
+            <div v-if="hasFood(order)">                             
             <div id ="order">
             <ul>
-                
+                 <button @click="removeOrd(order)" id="button2">Delete order</button>
                 <li>Order number: {{order.getOrderNumber()}}</li>
                 <li>Table: {{order.getTables()}}</li>
                 <li>Food
@@ -17,16 +18,18 @@
                         </li>
                     </ul>
                 </li>
-                
-                                <button @click="setStatus(order, 1)" id="button">Pick up order</button>
+                <button @click="setStatus(order, 1)" id="button">Pick up order</button> 
+
+                               
             </ul>
-    </div> </div></div>
+    </div> </div></div></div>
         
         <div id="ongoing">
         <h3>Ongoing orders: {{ this.ongoingOrders.length }}</h3>
         <div v-for="order in ongoingOrders">
             <div id ="order">
             <ul>
+                <button @click="removeOrd(order)" id="button2">Delete order</button>
                 <li>Order number: {{order.getOrderNumber()}}</li>
                 <li>Table: {{order.getTables()}}</li>
                 <li>Food
@@ -119,7 +122,25 @@ export default {
                 console.log(foodItem.label);
             }     
             console.log ("END: Order "+ order.getOrderNumber() + "\n---------------------------");
-        } 
+            
+            this.clientAPI.removeOrder(order);
+            order.setStatus(3);
+            this.clientAPI.updateOrder(order);
+            //this.serverAPI.removeOrder(order);
+            
+        },
+        
+        removeOrd(order){
+            order.setStatus(3);
+            this.clientAPI.updateOrder(order);
+            //this.clientAPI.removeOrder(order);
+            //this.serverAPI.removeOrder(order);
+        },
+        
+        hasFood(order){
+        return (order.getFoods().length>0);
+        
+    }
 
     }
 }
@@ -186,8 +207,18 @@ ul > ul {
         box-shadow:  1px 2px 3px black;
     }
     
-    button {
+    #button2 {
     background-color: rgb(220, 80, 80);
+    padding: 1em;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    margin-top: 2px;
+        margin-bottom: 3px;
+    
+}
+        button {
+    background-color: green;
     padding: 1em;
     border: none;
     border-radius: 2px;
@@ -195,4 +226,16 @@ ul > ul {
     margin-top: 2px;
     
 }
+    
+     button {
+    background-color: green;
+    padding: 1em;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    margin-top: 2px;
+    
+}
+    
+    
 </style>

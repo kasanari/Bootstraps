@@ -1,15 +1,21 @@
 <template>
-    <div class="item-container" v-on:click="click">
+    <div class="item-container">
         <div 
             class="item"
             v-bind:style="itemStyle"
+            v-on:click="click"
         >
-            <p class="item-label">{{ item.label }}</p>
+            <p class="item-label">{{ item.label }} <span @click="toggleCustomize">{cust}</span></p>
         </div>
+        <pop-over :visible="customizeVisible" @requestToggle="toggleCustomize">
+            SPECIALBESTÄLLNINGAR HÄR!
+        </pop-over>
     </div> 
 </template>
 
 <script>
+import PopOver from './PopOver.vue';
+
 export default {
     name: 'menu-item',
     props: [
@@ -19,13 +25,24 @@ export default {
         return {
             itemStyle: {
                 backgroundImage: 'url(' + this.item.img + ')'
-            }
+            },
+            customizeVisible: false
         }
     },
     methods: {
         click() {
             this.$emit('itemClick', this.item);
+        },
+        toggleCustomize(event) {
+            this.customizeVisible = !this.customizeVisible;
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
         }
+    },
+    components: {
+        PopOver
     }
 }
 </script>

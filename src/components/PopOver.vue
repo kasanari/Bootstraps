@@ -124,16 +124,17 @@ export default {
             if (!this.visible) return;
 
             const parent = this.$refs.container.parentElement;
+            const parentRect = parent.getBoundingClientRect();
             let desiredLeft;
             let desiredTop;
             if (this.pos == 'up') {
-                desiredLeft = (parent.offsetLeft + parent.offsetWidth / 2 - this.width / 2);
+                desiredLeft = (parentRect.left + parentRect.width / 2 - this.width / 2);
 
-                desiredTop = (parent.offsetTop + parent.offsetHeight);
+                desiredTop = (parentRect.left + parentRect.height);
             } else {
-                desiredLeft = parent.offsetLeft + parent.offsetWidth;
+                desiredLeft = parentRect.left + parentRect.width;
 
-                desiredTop = (parent.offsetTop + parent.offsetHeight / 2 - this.height / 2);
+                desiredTop = (parentRect.top + parentRect.height / 2 - this.height / 2);
             }
             // Make sure it doesn't go outside screen to right
             desiredLeft = Math.min(desiredLeft, window.innerWidth - this.width - 8); //-8 to give some space

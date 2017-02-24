@@ -1,3 +1,5 @@
+let menu = require('../../shared/data/menu.json');
+
 function parseDrink(drink) {
     let {
         _id
@@ -13,6 +15,18 @@ class Drink {
 
     getId() {
         return this._id;
+    }
+
+    getMenuItem() {
+        return menu.drinks.find((drink) => drink._id === this._id);
+    }
+
+    getLabel() {
+        return this.getMenuItem().label;
+    }
+
+    getPrice() {
+        return this.getMenuItem().price;
     }
 }
 

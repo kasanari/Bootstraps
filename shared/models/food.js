@@ -1,3 +1,4 @@
+let menu = require('../../shared/data/menu.json');
 let { parseOption } = require('./option');
 
 function parseFood(food) {
@@ -34,6 +35,18 @@ class Food {
 
     getNote() {
         return this._note;
+    }
+
+    getMenuItem() {
+        return menu.foods.find((food) => food._id === this._id);
+    }
+
+    getLabel() {
+        return this.getMenuItem().label;
+    }
+
+    getPrice() {
+        return this.getMenuItem().price;
     }
 }
 

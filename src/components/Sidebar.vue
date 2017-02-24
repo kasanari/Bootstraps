@@ -2,7 +2,7 @@
     
     <div> 
         <order-list />
-        <table-picker ></table-picker>
+        <table-picker v-on:tableClick = "flip" :active = tables></table-picker>
         <payment/>
         <button @click="sendOrder">Send to kitchen</button>
     </div>
@@ -19,7 +19,7 @@
         name: 'sidebar',
         data: function () {
             return {
-                
+                tables: {}
             }
         },
       
@@ -29,7 +29,18 @@
         methods: {
             sendOrder() {
                 this.clientAPI.sendOrder();
-            }
+                this.reset();
+            },
+            reset() {
+                this.tables = Object.assign({}, {});
+            },
+            flip: function (number) {
+            console.log("yo");
+            this.tables[number] = !this.tables[number];
+            this.tables = Object.assign({}, this.tables);
+            
+        },
+            
         },
         components: {            
           TablePicker,

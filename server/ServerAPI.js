@@ -49,6 +49,13 @@ class ServerAPI {
         }
         this._broadcastOrders();
     }
+    
+    removeOrder(order){
+        var index = this._orders.indexOf(order);
+        if (index > -1){
+            this._orders.splice(index, 1);
+        };
+    }
 
     _broadcastOrders() {
         this._io.emit("orders", {orders: this._orders});

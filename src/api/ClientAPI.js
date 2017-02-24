@@ -49,6 +49,13 @@ export default class ClientAPI {
     removeOrdersListener(funcToRemove) {
         this._onOrdersCallbacks = this._onOrdersCallbacks.filter((func) => func !== funcToRemove);
     }
+    
+    removeOrder(order){
+        var index = this._orders.indexOf(order);
+        if (index > -1){
+            this._orders.splice(index, 1);
+        };
+    }
 
     addOrderChangedListener(func) {
         this._onOrderChangedCallbacks.push(func);
@@ -101,7 +108,7 @@ export default class ClientAPI {
     _callOnOrdersListeners() {
         this._onOrdersCallbacks.forEach((func) => func(this._orders));
     }
-
+ 
     _callOnOrderChangedListeners() {
         this._onOrderChangedCallbacks.forEach((func) => func(this._order));
     }

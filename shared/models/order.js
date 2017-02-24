@@ -4,7 +4,8 @@ let { parseDrink } = require('./drink');
 STATUS = {
     waiting: 0,
     ongoing: 1,
-    ready: 2
+    ready: 2,
+    out: 3
 }
 
 function parseOrder(order) {
@@ -34,7 +35,8 @@ function validateStatus(status) {
     if (
         status !== STATUS.ongoing &&
         status !== STATUS.ready &&
-        status !== STATUS.waiting
+        status !== STATUS.waiting &&
+        status !== STATUS.out
     ) {
         throw new Error(`No such order status ${status}`);
     }

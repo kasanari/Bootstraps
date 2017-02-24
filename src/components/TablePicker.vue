@@ -1,8 +1,8 @@
 <template>
     <!-- Detta kan nog genereras via en funktion -->
     <div>
-        <div v-for="(n, index) in amount" @click="() => flip(index)">
-            <table-button v-bind:table = n v-bind:isActive = "active[index]"> </table-button>
+        <div v-for="(n, index) in amount" @click="() => flip(index)" class="table-button">
+            <table-button v-bind:table ="n" v-bind:isActive = "active[index]"> </table-button>
         </div>
     </div>
   </template>
@@ -15,7 +15,7 @@ export default {
     data: function () {
         return {
             tables: [],
-            amount: 10,
+            amount: 12,
            
         }
     },
@@ -48,11 +48,13 @@ export default {
 
 <style scoped>
 div {
-          display: flex;
-        flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
-      }
-      
-      
+}
 
-      </style>
+.table-button {
+    width: 25%;
+}
+
+</style>

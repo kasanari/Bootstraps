@@ -27,12 +27,12 @@
 #sidebar {
     width: 1px;
     margin-left: 1em;
-    flex-grow: 3;
+    flex-grow: 2;
 }
 
 #menu-area {
     width: 1px;
-    flex-grow: 7;
+    flex-grow: 9;
     margin-left: 1em;
     margin-right: 1em;
 }

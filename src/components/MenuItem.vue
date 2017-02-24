@@ -4,11 +4,14 @@
             class="item"
             v-bind:style="itemStyle"
             v-on:click="click"
+            ref="itemContainer"
         >
             <p class="item-label">{{ item.label }} <span @click="toggleCustomize">{cust}</span></p>
         </div>
-        <pop-over :visible="customizeVisible" @requestToggle="toggleCustomize">
-            SPECIALBESTÄLLNINGAR HÄR!
+        <pop-over :visible="customizeVisible" @requestToggle="toggleCustomize" :width="300" :height="300" pos="up">
+            <div class="custom-order">
+                SPECIALBESTÄLLNINGAR HÄR!
+            </div>
         </pop-over>
     </div> 
 </template>
@@ -48,6 +51,12 @@ export default {
 </script>
 
 <style scoped>
+.custom-order {
+    width: 100%;
+    height: 100%;
+    padding: 1em;
+}
+
 .item-container {
     padding: 5px;
 }

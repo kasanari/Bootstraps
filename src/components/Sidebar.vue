@@ -2,8 +2,10 @@
     
     <div class="container"> 
         <order-list class="order-list"/>
+        <h2>Tables:</h2>
         <table-picker v-on:tableClick = "flip" :active = tables></table-picker>
-        <payment/>
+        <h2>Payment method:</h2>
+        <payment :isCash = isCash :isCard = isCard v-on:switch="setType" />
         <button @click="sendOrder">Send to kitchen</button>
     </div>
     
@@ -43,7 +45,9 @@ export default {
     name: 'sidebar',
     data: function () {
         return {
-            tables: {}
+            tables: {},
+            isCard: false,
+            isCash: true
         }
     },
     
@@ -58,6 +62,8 @@ export default {
         },
         reset() {
             this.tables = Object.assign({}, {});
+            this.isCash = true;
+            this.isCard = false;
         },
         
         printOrder() {
@@ -90,9 +96,16 @@ export default {
             console.log("yo");
             this.tables[number] = !this.tables[number];
             this.tables = Object.assign({}, this.tables);
+            this.clientAPI.setTables(this.tables);
             
         },
-        
+        setType: function (type) {
+                if (type === "Cash") {
+                    this.isCash = true;
+                } else {
+                    this.isCash = false;
+                }  
+            }
     },
     components: {            
         TablePicker,

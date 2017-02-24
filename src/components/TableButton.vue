@@ -2,8 +2,7 @@
 
 <template>
     
-    <button 
-        v-on:click = "flip" v-bind:class="{active: isActive }"> {{ table }} </button>
+    <button  v-bind:class= "{active: this.isActive}"> {{ table }} </button>
     
     
 </template>
@@ -13,24 +12,23 @@
         name: 'table-button',
         data: function () {
             return {
-                isActive: false,
+               
             }
         },
       
         props: [
-            'table'
+            'table',
+             'isActive'
         ],
         methods: {
-            flip: function () {
-                this.isActive = !this.isActive;
-                this.$emit('toggle', this.table);
-            }
+            
+        },
         }
-    }
+    
 </script>
 
 <style scoped>
-button {
+   button {
     margin: 10px 10px;
     width: 2em;
     height: 2em;
@@ -42,11 +40,6 @@ button {
     text-decoration: none;
 
     font-size: 200%;
-}
-
-button:active {
-    text-decoration: none;
-    border:none;
 }
 
 .active {

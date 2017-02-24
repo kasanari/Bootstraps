@@ -3,7 +3,7 @@
 <template>
     
  <button 
-           v-on:click = "flip" > <p><!--{{ label }}--></p> </button>
+           v-on:click = "flip" > <p>{{ label }}</p> </button>
     
 </template>
 
@@ -40,6 +40,7 @@
         background-size: contain;
         font-size: 200%;
         flex-grow: 1;
+       
     }
 
     button:active {
@@ -48,9 +49,7 @@
 
    
     
-    p {
-        margin-top: 90px;
-    }
+   
     
 </style>
 

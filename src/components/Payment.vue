@@ -3,8 +3,8 @@
 <template>
     <div>
     <div class="main">
-        <pay-button v-on:switch="setType" v-bind:class="{active: isCash }" class="cash" v-bind:label = '"cash"'></pay-button>
-        <pay-button v-on:switch="setType" v-bind:class="{active: !isCash }" class="card" v-bind:label = '"card"'></pay-button>
+        <pay-button v-on:switch="setType" v-bind:class="{active: isCash }" class="cash" v-bind:label = '"Cash"'></pay-button>
+        <pay-button v-on:switch="setType" v-bind:class="{active: !isCash }" class="card" v-bind:label = '"Card"'></pay-button>
         
     </div>
     </div>
@@ -17,21 +17,16 @@
         name: 'payment',
         data: function () {
             return {
-                isCash: true,
-                isCard: false
             }
         },
       
         props: [
+            'isCash',
+            'isCard'
         ],
         methods: {
-            setType: function (type) {
-                if (type === "cash") {
-                    this.isCash = true;
-                } else {
-                    this.isCash = false;
-                }
-                
+            setType: function(type) {
+                this.$emit("switch", type);
             }
         },
          components: {            
@@ -52,7 +47,7 @@
     }
     
     .active {
-
+        color: ghostwhite; 
         background-color: rgba(39, 174, 96,1.0);
 
 
@@ -66,7 +61,7 @@
         margin: auto;
         text-align: center;
     }
-
+/*
     .card {
             background-image: url(https://upload.wikimedia.org/wikipedia/commons/a/a7/Emoji_u1f4b3.svg);
     }
@@ -74,6 +69,6 @@
     .cash {
             background-image: url(https://upload.wikimedia.org/wikipedia/commons/a/af/Emojione_1F4B6.svg);
     }
-    
+  */  
 </style>
 

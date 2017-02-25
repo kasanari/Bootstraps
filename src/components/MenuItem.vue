@@ -6,7 +6,7 @@
             v-on:click="click"
             ref="itemContainer"
         >
-            <p class="item-label">{{ item.label }} <span v-if="type === 'food'" @click="toggleCustomize">{cust}</span></p>
+            <div class="item-label"><p>{{ item.label }}</p> <i v-if="type === 'food'" class="material-icons" @click="toggleCustomize">settings</i></div>
         </div>
         <pop-over v-if="type === 'food'" :visible="customizeVisible" @requestToggle="toggleCustomize" :width="300" :height="300" pos="up">
             <div class="custom-order">
@@ -108,10 +108,12 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
-    text-align: center;
     background: rgba(0, 0, 0, 0.5);
     color: white;
     padding: 0.2em;
     font-size: 1.2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 </style>

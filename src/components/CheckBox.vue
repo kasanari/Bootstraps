@@ -11,9 +11,6 @@
 </template>
 
 <style scoped>
-.fade-enter-active, .fade-leave-active {
-    transition: opacity .2s;
-}
 .checkbox {
     position: relative;
     height: 1em;
@@ -23,6 +20,9 @@
 .checkbox-icon {
     position: absolute;
     opacity: 1;
+}
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .2s;
 }
 
 .fade-enter, .fade-leave-to {

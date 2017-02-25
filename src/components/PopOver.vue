@@ -1,16 +1,19 @@
 <template>
     <div class="pop-over" ref="container">
-        <div v-if="visible" class="overlay" @click="requestToggle" />
-        <div v-if="visible" class="content-container" :style="contentContainerStyle">
-            <div :class="arrowClass" class="arrow" />
-            <div class="content" ref="content">
-                <slot ref="slot"></slot>
+        <transition-group name="fade">
+            <div key="overlay" v-if="visible" class="overlay" @click="requestToggle" />
+            <div key="content" v-if="visible" class="content-container" :style="contentContainerStyle">
+                <div :class="arrowClass" class="arrow" />
+                <div class="content" ref="content">
+                    <slot ref="slot"></slot>
+                </div>
             </div>
-        </div>
+        </transition>
     </div>
 </template>
 
 <style scoped>
+
 .arrow {
 
 }
@@ -64,6 +67,15 @@
     color: white;
     height: 100%;
     width: 100%;
+
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.5);
+}
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .2s;
+}
+
+.fade-enter, .fade-leave-to {
+    opacity: 0;
 }
 </style>
 

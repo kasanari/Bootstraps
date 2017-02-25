@@ -130,9 +130,9 @@ export default {
             if (this.pos == 'up') {
                 desiredLeft = (parentRect.left + parentRect.width / 2 - this.width / 2);
 
-                desiredTop = (parentRect.left + parentRect.height);
+                desiredTop = parentRect.bottom;
             } else {
-                desiredLeft = parentRect.left + parentRect.width;
+                desiredLeft = parentRect.right;
 
                 desiredTop = (parentRect.top + parentRect.height / 2 - this.height / 2);
             }

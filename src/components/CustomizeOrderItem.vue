@@ -1,25 +1,73 @@
 <template>
-    <div>
-        <div v-for="option in localOrderItem._options">
-            <label :for="option._label">{{option._label}}</label><input :id="option._label" type="checkbox" v-model="option._value">
+    <div class="customize-order-item">
+        <template v-for="option in localOrderItem._options">
+            <check-box class="quick-option" v-model="option._value">{{ option._label }}</check-box>
+        </template>
+        <input type="text" v-model="localOrderItem._note" placeholder="Note">
+        <div class="qty-container">
+            <label for="qty">Quantity</label><input type="number" id="qty" v-model="localOrderItem._qty">
         </div>
-        <input type="text" v-model="localOrderItem._note"><br>
-        <label for="qty">Quantity</label><input type="number" id="qty" v-model="localOrderItem._qty">
         <button @click="update">Apply</button>
     </div>
 </template>
 
 <style scoped>
+.customize-order-item {
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.7em;
+    height: calc(100% - 1.4em); /* -2em for padding */
+    width: calc(100% - 1.4em);
+}
+
+.customize-order-item > * {
+}
+
+button {
+    font-size: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border: 0;
+    align-self: stretch;
+}
+
+input {
+    font-size: 0.8em;
+    border: 0;
+    padding: 0.3em;
+}
+
+input[type="text"] {
+    width: calc(100% - 0.6em); /*-0.6em because of padding*/
+}
+
+.qty-container {
+    display: flex;
+}
+
+label[for="qty"] {
+    margin-right: 0.3em;
+}
+
+#qty {
+    width: 100%;
+}
 </style>
 
 <script>
 import Option from '../../shared/models/option';
+import CheckBox from './CheckBox.vue';
 
 export default {
     name: 'customize-order-item',
     props: [
         'order-item'
     ],
+    components: {
+        CheckBox
+    },
     data() {
         let localOrderItem = new this.orderItem.constructor();
         Object.assign(localOrderItem, this.orderItem);

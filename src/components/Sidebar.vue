@@ -3,9 +3,9 @@
     <div class="container"> 
         <order-list class="order-list"/>
         <h2>Tables:</h2>
-        <table-picker v-on:tableClick = "flip" :active = tables></table-picker>
+        <table-picker v-on:tableClick = "flip" :active = "tables"></table-picker>
         <h2>Payment method:</h2>
-        <payment :isCash = isCash :isCard = isCard v-on:switch="setType" />
+        <payment :isCash = "isCash" :isCard = "isCard" v-on:switch="setType" />
         <button @click="sendOrder">Send to kitchen</button>
     </div>
     

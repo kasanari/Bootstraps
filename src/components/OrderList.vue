@@ -4,11 +4,11 @@
         <h3>Tap items to add orders</h3>
         <div class="items-container">
             <p class="category-label">FOODS</p>
-            <div v-for="(food, i) in order.getFoods()">
+            <div class="order-item" v-for="(food, i) in order.getFoods()">
                 <order-list-item :orderItem="food" @update="updateOrderItem"/>
             </div>
             <p class="category-label">DRINKS</p>
-            <div class="item-container" v-for="drink in order.getDrinks()">
+            <div class="order-item" v-for="drink in order.getDrinks()">
                 <order-list-item :orderItem="drink" />
             </div>
         </div>
@@ -20,6 +20,14 @@
 .order-list {
     display: flex;
     flex-direction: column;
+}
+
+.order-item:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.order-item:nth-child(odd) {
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .items-container {

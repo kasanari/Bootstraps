@@ -142,6 +142,8 @@ export default {
             desiredLeft = Math.max(desiredLeft, 8); //8 to give some space
             // To the bottom
             desiredTop = Math.min(desiredTop, window.innerHeight - this.height - 8); // -8 for margin
+            // To the top
+            desiredTop = Math.max(desiredTop, 8); // 8 for margin
 
 
 

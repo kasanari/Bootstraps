@@ -1,7 +1,6 @@
 <template>
     <div class="order-list">
-        <h1>Order #{{order.getOrderNumber()}}</h1>
-        <h3>Tap items to add orders</h3>
+        <h2>Order #{{order.getOrderNumber()}}</h2>
         <div class="items-container">
             <p class="category-label">FOODS</p>
             <div class="order-item" v-for="(food, i) in order.getFoods()">

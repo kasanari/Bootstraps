@@ -38,12 +38,16 @@
 <style scoped>
 
     .main {
-        height: 100px;
+        height: 80px;
         margin: auto;
-        width: 70%;
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
         align-items: stretch;
+    }
+
+    .main > *:not(:last-child) {
+        margin-right: 0.3em;
     }
     
     .active {

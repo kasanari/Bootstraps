@@ -28,18 +28,18 @@
 </script>
 
 <style scoped>
-   button {
+button {
     margin: 10px 10px;
     width: 2em;
     height: 2em;
   
-    //padding: 1em;
+    /*padding: 1em;*/
     border: solid 1px;
     border-radius: 2px;
     
     text-decoration: none;
 
-    font-size: 200%;
+    font-size: 1.5em;
 }
 
 .active {

@@ -1,7 +1,6 @@
 <template>
     
     <div>
-        <h1>MENU GOES HERE</h1>
         <menu-container />
     </div>
     

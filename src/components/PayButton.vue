@@ -31,14 +31,14 @@
 <style scoped>
 
     button {
-        margin: 10px 10px;
+        // margin: 10px 10px;
         border: solid 1px;
         border-radius: 2px;
         text-decoration: none;
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
-        font-size: 200%;
+        font-size: 1.5em;
         flex-grow: 1;
        
     }

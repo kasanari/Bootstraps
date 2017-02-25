@@ -25,13 +25,12 @@
 }
 
 button {
-    display: block;
-    margin: auto;
-    margin-top: 20px;
+    margin-top: 0.3em;
     padding: 10px;
     font-family: inherit;
-    font-size: 150%;
+    font-size: 1.5em;
     font-weight: bold;
+    align-self: stretch;
     
 }
    </style>

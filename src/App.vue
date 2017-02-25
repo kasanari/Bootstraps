@@ -5,6 +5,12 @@
     </div>
 </template>
 
+<style scoped>
+div {
+    height: 100%;
+}
+</style>
+
 <script>
     import AppBar from './components/AppBar.vue';
     export default {

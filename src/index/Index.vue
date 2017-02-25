@@ -21,7 +21,10 @@
 <style scoped>
 #main-container {
     display: flex;
-    width: 100%;
+    padding: 1em;
+    width: calc(100% - 2em);
+    height: calc(100% - 2em);
+    align-items: stretch;
 }
 
 #sidebar {

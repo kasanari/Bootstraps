@@ -2,6 +2,7 @@
     "foods": [{
             "_id": 1,
             "label": "Cheese burger",
+            "customizable": true,
             "options": [
                 { "label": "Extra onion", "default": false },
                 { "label": "Extra cheese", "default": false }
@@ -12,6 +13,7 @@
         {
             "_id": 2,
             "label": "Vegan burger",
+            "customizable": true,
             "options": [
                 { "label": "Extra onion", "default": false },
                 { "label": "Extra truffle", "default": false }
@@ -23,6 +25,7 @@
         {
             "_id": 3,
             "label": "Pommes frités",
+            "customizable": true,
             "options": [
                 { "label": "Extra onion", "default": false }
             ],
@@ -33,6 +36,7 @@
         {
             "_id": 4,
             "label": "test burger 4",
+            "customizable": true,
             "options": [
                 { "label": "Extra onion", "default": false }
             ],
@@ -43,6 +47,7 @@
         {
             "_id": 5,
             "label": "test burger 5",
+            "customizable": true,
             "options": [
                 { "label": "Extra onion", "default": false }
             ],

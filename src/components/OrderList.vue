@@ -5,7 +5,7 @@
         <div class="items-container">
             <p class="category-label">FOODS</p>
             <div v-for="(food, i) in order.getFoods()">
-                <order-list-item :orderItem="food" />
+                <order-list-item :orderItem="food" @update="updateOrderItem"/>
             </div>
             <p class="category-label">DRINKS</p>
             <div class="item-container" v-for="drink in order.getDrinks()">
@@ -72,6 +72,10 @@ export default {
                 orderTotal = orderTotal + drinkItem.price;
             };
             return orderTotal;
+        },
+
+        updateOrderItem(oldItem, newItem) {
+            Object.assign(oldItem, newItem);
         },
         
         hasFood(order){

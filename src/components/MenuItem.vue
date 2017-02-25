@@ -10,7 +10,7 @@
         </div>
         <pop-over :visible="customizeVisible" @requestToggle="toggleCustomize" :width="300" :height="300" pos="up">
             <div class="custom-order">
-                SPECIALBESTÄLLNINGAR HÄR!
+                <customize-order-item :order-item="orderItem" @update="addOrderItem"/>
             </div>
         </pop-over>
     </div> 
@@ -18,12 +18,31 @@
 
 <script>
 import PopOver from './PopOver.vue';
+import CustomizeOrderItem from './CustomizeOrderItem.vue';
+import Food from '../../shared/models/food';
+import Drink from '../../shared/models/drink';
 
 export default {
     name: 'menu-item',
     props: [
-        'item'
+        'item',
+        'type'
     ],
+    computed: {
+        orderItem() {
+            if (this.isFood) {
+                return new Food(this.item._id, [], "");
+            } else if (this.isDrink) {
+                return new Drink(this.item._id);
+            }
+        },
+        isFood() {
+            return !!this.type && this.type === 'food';
+        },
+        isDrink() {
+            return !!this.type && this.type === 'drink';
+        }
+    },
     data() {
         return {
             itemStyle: {
@@ -36,6 +55,14 @@ export default {
         click() {
             this.$emit('itemClick', this.item);
         },
+        addOrderItem(item) {
+            if (this.isFood) {
+                this.clientAPI.addFood(item);
+            } else if (this.isDrink) {
+                this.clientAPI.addDrink(item);
+            }
+            this.customizeVisible = false;
+        },
         toggleCustomize(event) {
             this.customizeVisible = !this.customizeVisible;
             if (event) {
@@ -45,7 +72,8 @@ export default {
         }
     },
     components: {
-        PopOver
+        PopOver,
+        CustomizeOrderItem
     }
 }
 </script>

@@ -2,7 +2,7 @@
     <div class="menu-list-container">
         <h2>{{title}}</h2>
         <div class="menu-list">
-            <menu-item v-for="item in items" v-on:itemClick="itemClick" :item="item" />
+            <menu-item v-for="item in items" v-on:itemClick="itemClick" :item="item" :type="type" />
         </div>
     </div>
 </template>
@@ -14,7 +14,8 @@
         name: 'menu-list',
         props: [
             'items',
-            'title'
+            'title',
+            'type'
         ],
         components: {
             MenuItem

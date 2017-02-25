@@ -3,11 +3,13 @@
         <menu-list 
             title="Food"
             v-on:itemClick="foodClick"
-            :items="foods" />
+            :items="foods"
+            type="food" />
         <menu-list 
             title="Drinks"
             v-on:itemClick="drinkClick"
-            :items="drinks" />
+            :items="drinks"
+            type="drink" />
     </div>
 </template>
 

@@ -2,15 +2,23 @@ let menu = require('../../shared/data/menu.json');
 
 function parseDrink(drink) {
     let {
-        _id
+        _id,
+        _qty
     } = drink;
+
+    _qty = _qty || 1;
 
     return new Drink(_id);
 }
 
 class Drink {
-    constructor(id) {
+    constructor(id, qty) {
         this._id = id;
+        this._qty = qty || 1;
+    }
+
+    getQty() {
+        return this._qty;
     }
 
     getId() {

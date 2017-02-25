@@ -3,7 +3,8 @@
         <div v-for="option in localOrderItem._options">
             <label :for="option._label">{{option._label}}</label><input :id="option._label" type="checkbox" v-model="option._value">
         </div>
-        <input type="text" v-model="localOrderItem._note">
+        <input type="text" v-model="localOrderItem._note"><br>
+        <label for="qty">Quantity</label><input type="number" id="qty" v-model="localOrderItem._qty">
         <button @click="update">Apply</button>
     </div>
 </template>

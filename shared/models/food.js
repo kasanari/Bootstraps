@@ -5,24 +5,32 @@ function parseFood(food) {
     let {
         _id,
         _options,
-        _note
+        _note,
+        _qty
     } = food;
 
     _options = (_options || []).map((option) => parseOption(option));
     _note = _note || '';
+    _qty = _qty || 1;
 
     return new Food(
         _id,
         _options,
-        _note
+        _note,
+        _qty
     );
 }
 
 class Food {
-    constructor(id, options, note) {
+    constructor(id, options, note, qty) {
         this._id = id;
-        this._options = options;
-        this._note = note;
+        this._options = options || [];
+        this._note = note || '';
+        this._qty = qty || 1;
+    }
+
+    getQty() {
+        return this._qty;
     }
 
     getId() {

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="item" @click="toggleCustomize" ref="item">
-            <p class="item-name">{{orderItem.getLabel()}}, {{orderItem.getPrice()}}kr</p>
+            <p class="item-name">{{ orderItem.getQty() }}x {{orderItem.getLabel()}}, {{orderItem.getPrice()}}kr</p>
             <p class="item-note" v-if="customizeLabel.length > 0">
                 {{customizeLabel}}
             </p>

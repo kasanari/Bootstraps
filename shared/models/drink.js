@@ -36,6 +36,10 @@ class Drink {
     getPrice() {
         return this.getMenuItem().price;
     }
+
+    compareTo(drink) {
+        return this._id - drink._id;
+    }
 }
 
 module.exports = Drink;

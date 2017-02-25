@@ -56,6 +56,28 @@ class Food {
     getPrice() {
         return this.getMenuItem().price;
     }
+
+    compareTo(food) {
+        let compare = 0;
+        compare += this._id - food._id;
+        if (compare !== 0) return compare;
+        compare += this._note.localeCompare(food._note);
+        if (compare !== 0) return compare;
+        compare += this._options.length - food._options.length;
+        if (compare !== 0) return compare;
+        for (let i = 0; i < this._options.length; i++) {
+            const myOption = this._options[i];
+            const otherOption = food._options.find((op) => op._label === myOption._label);
+            if (!otherOption) {
+                compare += 1;
+                return compare;
+            }
+            compare += myOption.compareTo(otherOption);
+            if (compare !== 0) return compare;
+        }
+
+        return compare;
+    }
 }
 
 module.exports = Food;

@@ -20,6 +20,14 @@ class Option {
     getValue() {
         return this._value;
     }
+
+    compareTo(option) {
+        let compare = 0;
+        compare += this._label.localeCompare(option._label);
+        if (compare !== 0) return compare;
+        compare += this._value - option._value;
+        return compare;
+    }
 }
 
 module.exports = Option;

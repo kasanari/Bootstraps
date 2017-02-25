@@ -6,9 +6,9 @@
             v-on:click="click"
             ref="itemContainer"
         >
-            <p class="item-label">{{ item.label }} <span @click="toggleCustomize">{cust}</span></p>
+            <p class="item-label">{{ item.label }} <span v-if="type === 'food'" @click="toggleCustomize">{cust}</span></p>
         </div>
-        <pop-over :visible="customizeVisible" @requestToggle="toggleCustomize" :width="300" :height="300" pos="up">
+        <pop-over v-if="type === 'food'" :visible="customizeVisible" @requestToggle="toggleCustomize" :width="300" :height="300" pos="up">
             <div class="custom-order">
                 <customize-order-item :order-item="orderItem" @update="addOrderItem"/>
             </div>

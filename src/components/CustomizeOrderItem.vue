@@ -42,6 +42,12 @@ export default {
     },
     methods: {
         update() {
+            const menuItem = this.localOrderItem.getMenuItem();
+            this.localOrderItem._options = this.localOrderItem._options.filter((option) => {
+                const originalOption = menuItem.options.find((op) => option._label.localeCompare(op.label) === 0);
+                return option._value !== originalOption.default;
+            });
+
             this.$emit('update', this.localOrderItem);
         }
     }

@@ -71,12 +71,27 @@ export default class ClientAPI {
     }
 
     addFood(food) {
-        this._order.getFoods().push(food);
+        const foods = this._order.getFoods();
+
+        const dupe = foods.find((f) => f.compareTo(food) === 0);
+        if (!!dupe) {
+            dupe._qty += food._qty;
+        } else {
+            foods.push(food);
+        }
+
         this._callOnOrderChangedListeners();
     }
 
     addDrink(drink) {
-        this._order.getDrinks().push(drink);
+        const drinks = this._order.getDrinks();
+
+        const dupe = drinks.find((d) => d.compareTo(drink) === 0);
+        if (!!dupe) {
+            dupe._qty += drink._qty;
+        } else {
+            drinks.push(drink);
+        }
         this._callOnOrderChangedListeners();
     }
     

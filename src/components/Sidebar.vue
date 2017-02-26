@@ -31,6 +31,8 @@
 
 .order-list {
     flex-grow: 1;
+    /* Make sure this, and this only, is the one shrinking */
+    flex-shrink: 100000;
 }
     
 

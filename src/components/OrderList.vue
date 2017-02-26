@@ -1,17 +1,15 @@
 <template>
     <div class="order-list">
         <template v-if="hasItems">
-            <div>
-                <h2 class="order-nbr">Order #{{order.getOrderNumber()}}</h2>
-                <div class="items-container">
-                    <p class="category-label">FOODS</p>
-                    <div class="order-item" v-for="(food, i) in order.getFoods()">
-                        <order-list-item :orderItem="food" @update="updateOrderItem" @remove="removeItem"/>
-                    </div>
-                    <p class="category-label">DRINKS</p>
-                    <div class="order-item" v-for="drink in order.getDrinks()">
-                        <order-list-item :orderItem="drink" @remove="removeItem"/>
-                    </div>
+            <h2 class="order-nbr">Order #{{order.getOrderNumber()}}</h2>
+            <div class="items-container">
+                <p class="category-label">FOODS</p>
+                <div class="order-item" v-for="(food, i) in order.getFoods()">
+                    <order-list-item :orderItem="food" @update="updateOrderItem" @remove="removeItem"/>
+                </div>
+                <p class="category-label">DRINKS</p>
+                <div class="order-item" v-for="drink in order.getDrinks()">
+                    <order-list-item :orderItem="drink" @remove="removeItem"/>
                 </div>
             </div>
             <h3 class="order-total"> Order Total:  {{getOrderTotal(order)}}</h3>
@@ -65,6 +63,7 @@
     margin-left: -0.5em;
     margin-right: -0.5em;
     flex-shrink: 1;
+    flex-grow: 1;
     overflow-y: auto;
 }
 

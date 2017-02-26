@@ -29,7 +29,7 @@
 }
 
 .order-list {
-    max-height: 30vh;
+    flex-grow: 1;
 }
     
 

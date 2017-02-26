@@ -109,6 +109,12 @@ export default class ClientAPI {
         this._io.emit('order', order);
     }
 
+    removeItemInOrder(item) {
+        this._order._foods = this._order._foods.filter((food) => item !== food);
+        this._order._drinks = this._order._drinks.filter((drink) => item !== drink);
+        this._callOnOrderChangedListeners();
+    }
+
     _onInitialize(data) {
         this._orders = data.orders.map((orderData) => parseOrder(orderData));
         this._callOnOrdersListeners();

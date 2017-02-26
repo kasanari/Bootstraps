@@ -4,11 +4,11 @@
         <div class="items-container">
             <p class="category-label">FOODS</p>
             <div class="order-item" v-for="(food, i) in order.getFoods()">
-                <order-list-item :orderItem="food" @update="updateOrderItem"/>
+                <order-list-item :orderItem="food" @update="updateOrderItem" @remove="removeItem"/>
             </div>
             <p class="category-label">DRINKS</p>
             <div class="order-item" v-for="drink in order.getDrinks()">
-                <order-list-item :orderItem="drink" />
+                <order-list-item :orderItem="drink" @remove="removeItem"/>
             </div>
         </div>
         <h3> Order Total:  {{getOrderTotal(order)}}</h3>
@@ -83,6 +83,10 @@ export default {
 
         updateOrderItem(oldItem, newItem) {
             Object.assign(oldItem, newItem);
+        },
+
+        removeItem(item) {
+            this.clientAPI.removeItemInOrder(item);
         },
         
         hasFood(order){

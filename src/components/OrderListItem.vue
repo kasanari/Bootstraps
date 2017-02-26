@@ -1,10 +1,15 @@
 <template>
     <div>
         <div class="item" @click="toggleCustomize" ref="item">
-            <p class="item-name">{{ orderItem.getQty() }}x {{orderItem.getLabel()}}, {{orderItem.getPrice()}}kr</p>
-            <p class="item-note" v-if="customizeLabel.length > 0">
-                {{customizeLabel}}
-            </p>
+            <div class="header">
+                <p class="item-name">{{ orderItem.getQty() }}x {{orderItem.getLabel()}}, {{orderItem.getPrice()}}kr</p>
+                <i @click="remove" class="remove-icon material-icons">remove_circle</i>
+            </div>
+            <div class="subheader">
+                <p class="item-note" v-if="customizeLabel.length > 0">
+                    {{customizeLabel}}
+                </p>
+            </div>
         </div>
         <pop-over :visible="customizeVisible" @requestToggle="toggleCustomize" pos="left" :width="300" :height="300">
             <CustomizeOrderItem :order-item="orderItem" @update="updateOrder" />
@@ -14,9 +19,20 @@
 </template>
 
 <style scoped>
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.remove-icon {
+    color: rgb(220, 50, 50);
+    margin-right: 0.1em;
+}
+
 .item-name {
     padding-top: 0.3em;
     padding-bottom: 0.3em;
+    flex-grow: 1;
 }
 
 .item-note {
@@ -61,6 +77,12 @@ export default {
         updateOrder(item) {
             this.$emit('update', this.orderItem, item);
             this.toggleCustomize();
+        },
+        remove(event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            this.$emit('remove', this.orderItem);
         }
     },
     components: {

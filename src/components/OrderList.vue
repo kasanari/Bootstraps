@@ -1,18 +1,20 @@
 <template>
     <div class="order-list">
         <template v-if="hasItems">
-            <h2>Order #{{order.getOrderNumber()}}</h2>
-            <div class="items-container">
-                <p class="category-label">FOODS</p>
-                <div class="order-item" v-for="(food, i) in order.getFoods()">
-                    <order-list-item :orderItem="food" @update="updateOrderItem" @remove="removeItem"/>
-                </div>
-                <p class="category-label">DRINKS</p>
-                <div class="order-item" v-for="drink in order.getDrinks()">
-                    <order-list-item :orderItem="drink" @remove="removeItem"/>
+            <div>
+                <h2 class="order-nbr">Order #{{order.getOrderNumber()}}</h2>
+                <div class="items-container">
+                    <p class="category-label">FOODS</p>
+                    <div class="order-item" v-for="(food, i) in order.getFoods()">
+                        <order-list-item :orderItem="food" @update="updateOrderItem" @remove="removeItem"/>
+                    </div>
+                    <p class="category-label">DRINKS</p>
+                    <div class="order-item" v-for="drink in order.getDrinks()">
+                        <order-list-item :orderItem="drink" @remove="removeItem"/>
+                    </div>
                 </div>
             </div>
-            <h3> Order Total:  {{getOrderTotal(order)}}</h3>
+            <h3 class="order-total"> Order Total:  {{getOrderTotal(order)}}</h3>
         </template>
         <div class="prompt" v-else>
             <h2>Tap items on the right to start an order</h2>
@@ -25,7 +27,11 @@
 .order-list {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     background-color: white;
+    color: black;
+    border-radius: 2px;
+    padding: 0.5em;
 }
 
 .prompt {
@@ -56,6 +62,8 @@
 }
 
 .items-container {
+    margin-left: -0.5em;
+    margin-right: -0.5em;
     flex-shrink: 1;
     overflow-y: auto;
 }
@@ -63,8 +71,9 @@
 .category-label {
     font-size: 0.8em;
     color: rgba(200, 200, 200, 1);
-    margin-bottom: 0.4em;
-    margin-top: 0.4em;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    margin-left: 0.5em;
 }
 </style>
 

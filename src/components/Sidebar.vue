@@ -25,7 +25,8 @@
     display: flex;
     flex-direction: column;
     padding: 20px;
-    background-color: rgba(236, 240, 241,1.0);
+    background-color: rgb(220, 80, 80);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .order-list {

@@ -21,22 +21,20 @@
 <style scoped>
 #main-container {
     display: flex;
-    padding: 1em;
-    width: calc(100% - 2em);
-    height: calc(100% - 2em);
+    width: 100%;
+    height: 100%;
     align-items: stretch;
 }
 
 #sidebar {
     width: 1px;
-    margin-left: 1em;
     flex-grow: 2;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+    z-index: 2;
 }
 
 #menu-area {
     width: 1px;
     flex-grow: 9;
-    margin-left: 1em;
-    margin-right: 1em;
 }
 </style>

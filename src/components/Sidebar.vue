@@ -7,6 +7,10 @@
         <h2>Payment method:</h2>
         <payment :isCash = "isCash" :isCard = "isCard" v-on:switch="setType" />
         <button @click="sendOrder">Send to kitchen</button>
+        <notification :visible="successVisible" @requestHide="setSuccessVisible(false)">
+            <p slot="title">Success</p>
+            <p>Order successfully sent to kitchen</p>
+        </notification>
     </div>
     
     
@@ -36,9 +40,10 @@ button {
    </style>
 
 <script>
-    import Payment from '../components/Payment.vue';
-import TablePicker from '../components/TablePicker.vue';
-import OrderList from '../components/OrderList.vue';
+import Payment from './Payment.vue';
+import TablePicker from './TablePicker.vue';
+import OrderList from './OrderList.vue';
+import Notification from './Notification.vue';
 
 export default {
     name: 'sidebar',
@@ -46,7 +51,8 @@ export default {
         return {
             tables: {},
             isCard: false,
-            isCash: true
+            isCash: true,
+            successVisible: false
         }
     },
     
@@ -54,10 +60,14 @@ export default {
         
     ],
     methods: {
+        setSuccessVisible(value) {
+            this.successVisible = value;
+        },
         sendOrder() {
             this.printOrder();
             this.clientAPI.sendOrder();
             this.reset();
+            this.setSuccessVisible(true);
         },
         reset() {
             this.tables = Object.assign({}, {});
@@ -109,7 +119,8 @@ export default {
     components: {            
         TablePicker,
         OrderList,
-        Payment
+        Payment,
+        Notification
     }
 }
    </script>

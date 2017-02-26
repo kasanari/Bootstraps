@@ -70,6 +70,10 @@ class Order {
     getOrderNumber() {
         return this._orderNumber;
     }
+    
+    hasNothing() {
+        return (this._foods.length == 0) && (this._drinks.length == 0);
+    }
 
     getCreatedAt() {
         return this._createdAt;

@@ -1,6 +1,6 @@
 <template>
     <transition name="slide-top">
-        <div class="notification" v-if="visible">
+        <div v-bind:class= "{error: error}" class="notification" v-if="visible">
             <p class="title"><slot name="title" /></p>
             <p class="message"><slot /></p>
         </div>
@@ -14,10 +14,14 @@
     transform: translateX(-50%);
     z-index: 200;
     top: 0;
-    background-color: rgb(80, 220, 80);
+background-color: rgb(80, 220, 80);
     padding: 1em;
     border-radius: 0 0 10px 10px;
 }
+
+    .error {
+        background-color: red;
+    }
 
 .slide-top-enter-active, .slide-top-leave-active {
     transition: transform .2s;
@@ -34,7 +38,8 @@ export default {
     props: [
         'title',
         'message',
-        'visible'
+        'visible',
+        'error'
     ],
     watch: {
         'visible'() {

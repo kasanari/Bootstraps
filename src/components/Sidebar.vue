@@ -7,9 +7,13 @@
         <h2>Payment method:</h2>
         <payment :isCash = "isCash" :isCard = "isCard" v-on:switch="setType" />
         <button @click="sendOrder">Send to kitchen</button>
-        <notification :visible="successVisible" @requestHide="setSuccessVisible(false)">
+        <notification :error="false" :visible="successVisible" @requestHide="setSuccessVisible(false)">
             <p slot="title">Success</p>
             <p>Order successfully sent to kitchen</p>
+        </notification>
+        <notification :error="true" :visible="failVisible" @requestHide="setFailVisible(false)">
+            <p slot="title">Error</p>
+            <p>Order could not be sent to kitchen</p>
         </notification>
     </div>
     
@@ -27,6 +31,8 @@
 .order-list {
     max-height: 30vh;
 }
+    
+
 
 button {
     margin-top: 0.3em;
@@ -52,7 +58,8 @@ export default {
             tables: {},
             isCard: false,
             isCash: true,
-            successVisible: false
+            successVisible: false,
+            failVisible: false
         }
     },
     
@@ -60,14 +67,27 @@ export default {
         
     ],
     methods: {
+        
+        isObjectEmpty(obj) {
+            return (Object.keys(obj).length === 0 && obj.constructor === Object)
+        },
         setSuccessVisible(value) {
             this.successVisible = value;
         },
+        setFailVisible(value) {
+          this.failVisible = value;  
+        },
         sendOrder() {
-            this.printOrder();
-            this.clientAPI.sendOrder();
-            this.reset();
-            this.setSuccessVisible(true);
+            
+            if (this.isObjectEmpty(this.tables) || this.clientAPI.getOrder().hasNothing()) {
+                this.setFailVisible(true);
+            } else {
+                this.printOrder();
+                this.clientAPI.sendOrder();
+                this.reset();
+                this.setSuccessVisible(true);
+            }
+            
         },
         reset() {
             this.tables = Object.assign({}, {});
@@ -104,6 +124,9 @@ export default {
         flip: function (number) {
             console.log("yo");
             this.tables[number] = !this.tables[number];
+            if (this.tables[number] == false) {
+                 delete this.tables[number];
+            }
             this.tables = Object.assign({}, this.tables);
             this.clientAPI.setTables(this.tables);
             

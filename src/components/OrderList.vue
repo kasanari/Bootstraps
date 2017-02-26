@@ -1,17 +1,23 @@
 <template>
     <div class="order-list">
-        <h2>Order #{{order.getOrderNumber()}}</h2>
-        <div class="items-container">
-            <p class="category-label">FOODS</p>
-            <div class="order-item" v-for="(food, i) in order.getFoods()">
-                <order-list-item :orderItem="food" @update="updateOrderItem" @remove="removeItem"/>
+        <template v-if="hasItems">
+            <h2>Order #{{order.getOrderNumber()}}</h2>
+            <div class="items-container">
+                <p class="category-label">FOODS</p>
+                <div class="order-item" v-for="(food, i) in order.getFoods()">
+                    <order-list-item :orderItem="food" @update="updateOrderItem" @remove="removeItem"/>
+                </div>
+                <p class="category-label">DRINKS</p>
+                <div class="order-item" v-for="drink in order.getDrinks()">
+                    <order-list-item :orderItem="drink" @remove="removeItem"/>
+                </div>
             </div>
-            <p class="category-label">DRINKS</p>
-            <div class="order-item" v-for="drink in order.getDrinks()">
-                <order-list-item :orderItem="drink" @remove="removeItem"/>
-            </div>
+            <h3> Order Total:  {{getOrderTotal(order)}}</h3>
+        </template>
+        <div class="prompt" v-else>
+            <h2>Tap items on the right to start an order</h2>
+            <h3>Remember to ask for customers table!</h3>
         </div>
-        <h3> Order Total:  {{getOrderTotal(order)}}</h3>
     </div>
 </template>
 
@@ -19,6 +25,26 @@
 .order-list {
     display: flex;
     flex-direction: column;
+    background-color: white;
+}
+
+.prompt {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    flex-grow: 1;
+    animation: pulsate 1s infinite alternate;
+}
+
+@keyframes pulsate {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
 }
 
 .order-item:nth-child(even) {
@@ -59,6 +85,11 @@ export default {
         this.clientAPI.addOrderChangedListener((newOrder) => {
             this.order = newOrder;
         })
+    },
+    computed: {
+        hasItems() {
+            return this.order.getDrinks().length + this.order.getFoods().length > 0;
+        }
     },
     methods: {
         getOrderTotal(order) {

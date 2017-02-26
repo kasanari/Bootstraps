@@ -4,7 +4,7 @@
             <div key="overlay" v-if="visible" class="overlay" @click="requestToggle" />
             <div key="content" v-if="visible" class="content-container" :style="contentContainerStyle">
                 <div :class="arrowClass" class="arrow" />
-                <div class="content" ref="content">
+                <div class="content" ref="content" :style="contentStyle">
                     <slot ref="slot"></slot>
                 </div>
             </div>
@@ -95,6 +95,9 @@ export default {
                 top: 0,
                 width: this.width + 'px',
                 height: this.height + 'px'
+            },
+            contentStyle: {
+                transform: 'translateX(0) translateY(0)'
             }
         }
     },
@@ -148,20 +151,23 @@ export default {
 
                 desiredTop = (parentRect.top + parentRect.height / 2 - this.height / 2);
             }
-            // Make sure it doesn't go outside screen to right
-            desiredLeft = Math.min(desiredLeft, window.innerWidth - this.width - 8); //-8 to give some space
-            // To the left
-            desiredLeft = Math.max(desiredLeft, 8); //8 to give some space
-            // To the bottom
-            desiredTop = Math.min(desiredTop, window.innerHeight - this.height - 8); // -8 for margin
-            // To the top
-            desiredTop = Math.max(desiredTop, 8); // 8 for margin
-
-
+            let translateX = 0;
+            let translateY = 0;
+            if (desiredLeft < 0) {
+                translateX = Math.max(desiredLeft, 8) - desiredLeft;
+            } else if (desiredLeft > window.innerWidth - this.width - 8) {
+                translateX = Math.min(desiredLeft, window.innerWidth - this.width - 8) - desiredLeft;
+            }
+            if (desiredTop < 0) {
+                translateY = Math.max(desiredTop, 8) - desiredTop;
+            } else if (desiredTop > window.innerHeight - this.height - 8) {
+                translateY = Math.min(desiredTop, window.innerHeight - this.height - 8) - desiredTop;
+            }
 
             this.contentContainerStyle['left'] = (desiredLeft) + 'px'
             this.contentContainerStyle['top'] = (desiredTop) + 'px'
             this.contentContainerStyle['flex-direction'] = this.flexDirection;
+            this.contentStyle['transform'] = `translateX(${translateX}px) translateY(${translateY}px)`;
         }
     }
 }

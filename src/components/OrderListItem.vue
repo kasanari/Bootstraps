@@ -5,7 +5,8 @@
                 <select class="qty-selector" v-model="orderItem._qty" @click="$event.stopPropagation()">
                     <option v-for="n in 100" :value="n">{{ n }}</option>
                 </select>
-                <p class="item-name">{{orderItem.getLabel()}}, {{orderItem.getPrice() * orderItem.getQty()}}kr</p>
+                <p class="item-name">{{orderItem.getLabel()}}</p>
+                <p class="item-price">{{ orderItem.getPrice() * orderItem.getQty() }}kr</p>
                 <i @click="remove" class="remove-icon material-icons">remove_circle</i>
             </div>
             <div class="subheader">
@@ -41,6 +42,10 @@
     padding-top: 0.3em;
     padding-bottom: 0.3em;
     flex-grow: 1;
+}
+
+.item-price {
+    margin-right: 0.4em;
 }
 
 .item-note {

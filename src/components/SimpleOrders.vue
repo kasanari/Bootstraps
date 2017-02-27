@@ -1,82 +1,90 @@
 
 <template>
-<div>    
-<div id ="waiting">
-        <h3>Waiting orders: {{ this.waitingOrders.length }}</h3>
-        
-        <div v-for="order in waitingOrders">
-            <div v-if="hasFood(order)">                             
-            <div id ="order">
-            <ul>
-                 <button @click="removeOrd(order)" id="button2">Delete order</button>
-                <li>Order number: {{order.getOrderNumber()}}</li>
-                <li>Table: {{order.getTables()}}</li>
-                <li>Food
-                    <ul>
-                        <li v-for="food in order.getFoods()">
-                            {{getFoodLabel(food)}}
-                        </li>
-                    </ul>
-                </li>
-                <button @click="setStatus(order, 1)" id="button">Pick up order</button> 
-
-                               
-            </ul>
-    </div> </div></div></div>
-        
+    <div>
+        <div id="waiting">
+            <h3>Waiting orders: {{ this.waitingOrders.length }}</h3>
+            <div v-for="order in waitingOrders">
+                <div v-if="hasFood(order)">
+                    <div id="order">
+                        <ul>
+                            <button @click="removeOrd(order)" id="button2">Delete order</button>
+                            <li>Order number: {{order.getOrderNumber()}}</li>
+                            <li>Table: {{order.getTables()}}</li>
+                            <li>Food
+                                <ul>
+                                    <li v-for="food in order.getFoods()">
+                                        {{getFoodLabel(food)}}
+                                    </li>
+                                </ul>
+                            </li>
+                            <button @click="setStatus(order, 1)" id="button">Pick up order</button>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="ongoing">
-        <h3>Ongoing orders: {{ this.ongoingOrders.length }}</h3>
-        <div v-for="order in ongoingOrders">
-            <div id ="order">
-            <ul>
-                <button @click="removeOrd(order)" id="button2">Delete order</button>
-                <li>Order number: {{order.getOrderNumber()}}</li>
-                <li>Table: {{order.getTables()}}</li>
-                <li>Food
+            <h3>Ongoing orders: {{ this.ongoingOrders.length }}</h3>
+            <div v-for="order in ongoingOrders">
+                <div id="order">
                     <ul>
-                        <li v-for="food in order.getFoods()">
-                            {{getFoodLabel(food)}}
+                        <button @click="removeOrd(order)" id="button2">Delete order</button>
+                        <li>Order number: {{order.getOrderNumber()}}</li>
+                        <li>Table: {{order.getTables()}}</li>
+                        <li>Food
+                            <ul>
+                                <li v-for="food in order.getFoods()">
+                                    {{getFoodLabel(food)}}
+                                </li>
+                            </ul>
                         </li>
+                        <button @click="setStatus(order, 2)">Finish up order</button>
                     </ul>
-                </li>
-                <button @click="setStatus(order, 2)">Finish up order</button>
-                </ul>
-    </div>
-    </div>
-    </div>
-        
+                </div>
+            </div>
+        </div>
         <div id="ready">
-        <h3>Ready orders: {{ this.readyOrders.length }}</h3>
-        <div v-for="order in readyOrders">
-            <div id ="order">
-            <ul>
-                <li>Order number: {{order.getOrderNumber()}}</li>
-                <li>Table: {{order.getTables()}}</li>
-                <li>Food
+            <h3>Ready orders: {{ this.readyOrders.length }}</h3>
+            <div v-for="order in readyOrders">
+                <div id="order">
                     <ul>
-                        <li v-for="food in order.getFoods()">
-                            {{getFoodLabel(food)}}
+                        <li>Order number: {{order.getOrderNumber()}}</li>
+                        <li>Table: {{order.getTables()}}</li>
+                        <li>Food
+                            <ul>
+                                <li v-for="food in order.getFoods()">
+                                    {{getFoodLabel(food)}}
+                                </li>
+                            </ul>
                         </li>
-                        
+                        <button @click="printOrder(order)">Print order</button>
                     </ul>
-                </li>
-                <button @click="printOrder(order)">Print order</button>
-            </ul>
-    </div></div></div>
+                </div>
+            </div>
+        </div>
+        <notification type="success" :visible="successVisible" @requestHide="setSuccessVisible(false)">
+            <p slot="title">Success</p>
+            <p>Order printed successfully</p>
+        </notification>
     </div>
 </template>
 
 <script>
 import { STATUS } from '../../shared/models/order';
+import Notification from './Notification.vue';
 
 export default {
     name: 'simple-orders',
+    components: {
+        Notification
+    },
     data() {
         return {
             allOrders: this.clientAPI.getOrders() || [],
             waitingOrders: [],
             ongoingOrders: [],
-            readyOrders: []
+            readyOrders: [],
+            successVisible: false
         }
     },
     mounted() {
@@ -84,6 +92,9 @@ export default {
         this.filterOrders();
     },
     methods: {
+        setSuccessVisible(value) {
+            this.successVisible = value;
+        },
         onOrders(newOrders) {
             this.allOrders = newOrders;
             this.filterOrders();
@@ -105,42 +116,44 @@ export default {
 
             return drinkItem.label;
         },
-        
-        setStatus(order, status){
+
+        setStatus(order, status) {
             order.setStatus(status);
             this.clientAPI.updateOrder(order);
         },
-        
-        printOrder(order){            
+
+        printOrder(order) {
             var food;
             let menu = this.clientAPI.getMenu();
             var i = order.getFoods().length;
-            console.log("START: Order "+ order.getOrderNumber() + "\n---------");
-            for (var n=0; n<i; n=n+1){
-                var f=order.getFoods()[n];
+            // Emulate printing an order
+            console.log("START: Order " + order.getOrderNumber() + "\n---------");
+            for (var n = 0; n < i; n = n + 1) {
+                var f = order.getFoods()[n];
                 let foodItem = menu.foods.find((fi) => fi._id === f.getId());
                 console.log(foodItem.label);
-            }     
-            console.log ("END: Order "+ order.getOrderNumber() + "\n---------------------------");
-            
+            }
+            console.log("END: Order " + order.getOrderNumber() + "\n---------------------------");
+            // Emulate success message
+            this.setSuccessVisible(true);
+
             this.clientAPI.removeOrder(order);
             order.setStatus(3);
             this.clientAPI.updateOrder(order);
             //this.serverAPI.removeOrder(order);
-            
+
         },
-        
-        removeOrd(order){
+
+        removeOrd(order) {
             order.setStatus(3);
             this.clientAPI.updateOrder(order);
             //this.clientAPI.removeOrder(order);
             //this.serverAPI.removeOrder(order);
         },
-        
-        hasFood(order){
-        return (order.getFoods().length>0);
-        
-    }
+
+        hasFood(order) {
+            return (order.getFoods().length > 0);
+        }
 
     }
 }

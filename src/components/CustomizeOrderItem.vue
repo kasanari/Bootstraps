@@ -6,7 +6,7 @@
         <input type="text" v-model="localOrderItem._note" placeholder="Note">
         <div class="qty-container">
             <label for="qty">Quantity</label>
-            <select id="qty" v-model="localOrderItem._qty">
+            <select id="qty" v-model.number="localOrderItem._qty">
                 <option v-for="n in 100">{{ n }}</option>
             </select>
         </div>

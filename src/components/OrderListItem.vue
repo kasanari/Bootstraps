@@ -2,7 +2,7 @@
     <div>
         <div class="item" @click="toggleCustomize" ref="item">
             <div class="header">
-                <select class="qty-selector" v-model="orderItem._qty" @click="$event.stopPropagation()">
+                <select class="qty-selector" v-model.number="orderItem._qty" @click="$event.stopPropagation()">
                     <option v-for="n in 100" :value="n">{{ n }}</option>
                 </select>
                 <p class="item-name">{{orderItem.getLabel()}}</p>

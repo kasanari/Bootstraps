@@ -7,11 +7,11 @@
         <h2>Payment method:</h2>
         <payment :isCash = "isCash" :isCard = "isCard" v-on:switch="setType" />
         <button @click="sendOrder">Send to kitchen</button>
-        <notification :error="false" :visible="successVisible" @requestHide="setSuccessVisible(false)">
+        <notification type="success" :visible="successVisible" @requestHide="setSuccessVisible(false)">
             <p slot="title">Success</p>
             <p>Order successfully sent to kitchen</p>
         </notification>
-        <notification :error="true" :visible="failVisible" @requestHide="setFailVisible(false)">
+        <notification type="error" :visible="failVisible" @requestHide="setFailVisible(false)">
             <p slot="title">Error</p>
             <p>Order could not be sent to kitchen</p>
         </notification>

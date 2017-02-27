@@ -112,14 +112,14 @@ export default {
                 var food =order.getFoods()[i];
                 let menu = this.clientAPI.getMenu();
                 let foodItem = menu.foods.find((fi) => fi._id === food.getId());
-                orderTotal = orderTotal + foodItem.price;
+                orderTotal = orderTotal + foodItem.price * food.getQty();
             }; 
             
             for (j=0; j<drinkCount; j++){
                 var drink =order.getDrinks()[j];
                 let menu = this.clientAPI.getMenu();
                 let drinkItem = menu.drinks.find((di) => di._id === drink.getId());
-                orderTotal = orderTotal + drinkItem.price;
+                orderTotal = orderTotal + drinkItem.price * drink.getQty();
             };
             return orderTotal;
         },

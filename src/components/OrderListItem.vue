@@ -2,7 +2,10 @@
     <div>
         <div class="item" @click="toggleCustomize" ref="item">
             <div class="header">
-                <p class="item-name">{{ orderItem.getQty() }}x {{orderItem.getLabel()}}, {{orderItem.getPrice()}}kr</p>
+                <select class="qty-selector" v-model="orderItem._qty" @click="$event.stopPropagation()">
+                    <option v-for="n in 100" :value="n">{{ n }}</option>
+                </select>
+                <p class="item-name">{{orderItem.getLabel()}}, {{orderItem.getPrice() * orderItem.getQty()}}kr</p>
                 <i @click="remove" class="remove-icon material-icons">remove_circle</i>
             </div>
             <div class="subheader">
@@ -22,6 +25,11 @@
 .header {
     display: flex;
     align-items: center;
+}
+
+.qty-selector {
+    margin-left: 0.4em;
+    margin-right: 0.4em;
 }
 
 .remove-icon {

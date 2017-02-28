@@ -85,18 +85,9 @@ import OrderListItem from './OrderListItem.vue';
 
 export default {
     name: 'order-list',
-    data() {
-        return {
-            order: this.clientAPI.getOrder()
-        }
-    },
+    props: ['order'],
     components: {
         OrderListItem
-    },
-    created() {
-        this.clientAPI.addOrderChangedListener((newOrder) => {
-            this.order = newOrder;
-        })
     },
     computed: {
         hasItems() {

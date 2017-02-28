@@ -1,7 +1,13 @@
 <template>
     
     <div class="container"> 
-        <order-list class="order-list"/>
+        <order-list :order="order" class="order-list"/>
+        <transition name="slide-to-upper-right">
+            <div v-if="!!sentOrder" :key="sentOrder.getOrderNumber()" class="sent-order-list">
+                <order-list :order="sentOrder" />
+            </div>
+        </transition>
+
         <h2>Tables:</h2>
         <table-picker v-on:tableClick = "flip" :active = "tables"></table-picker>
         <h2>Payment method:</h2>
@@ -21,6 +27,23 @@
   </template>
 
 <style scoped>
+.sent-order-list {
+    display: none;
+}
+
+.slide-to-upper-right-enter-active {
+    transition: transform 2s;
+    position: absolute;
+    display: initial;
+}
+
+.slide-to-upper-right-enter {
+    transform: scale(1) translate3d(0, 0, 0);
+}
+.slide-to-upper-right-enter-to {
+    transform: scale(1) translate3d(calc(100vw - 110%), 0, 0);
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -62,15 +85,18 @@ export default {
             isCard: false,
             isCash: true,
             successVisible: false,
-            failVisible: false
+            failVisible: false,
+            order: this.clientAPI.getOrder(),
+            sentOrder: null
         }
     },
-    
-    props: [
-        
-    ],
+    created() {
+        this.clientAPI.addOrderChangedListener(this.onOrderChanged);
+    },
     methods: {
-        
+        onOrderChanged(newOrder) {
+            this.order = newOrder;
+        },
         isObjectEmpty(obj) {
             return (Object.keys(obj).length === 0 && obj.constructor === Object)
         },
@@ -85,11 +111,13 @@ export default {
             if (this.isObjectEmpty(this.tables) || this.clientAPI.getOrder().hasNothing()) {
                 this.setFailVisible(true);
             } else {
+                this.sentOrder = this.order;
                 this.printOrder();
                 this.clientAPI.sendOrder();
                 this.reset();
                 this.setSuccessVisible(true);
             }
+
             
         },
         reset() {

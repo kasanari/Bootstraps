@@ -8,7 +8,7 @@
                     <slot ref="slot"></slot>
                 </div>
             </div>
-        </transition>
+        </transition-group>
     </div>
 </template>
 

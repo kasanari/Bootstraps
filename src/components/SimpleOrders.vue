@@ -8,7 +8,7 @@
                             <ul>
                                 <button @click="removeOrd(order)" id="button2">Delete order</button>
                                 <li>Order number: {{order.getOrderNumber()}}</li>
-                                <li>Table: {{order.getTables()}}</li>
+                                <li>Table: {{order.printTables()}}</li>
                                 <li>Food
                                     <ul>
                                         <li v-for="food in order.getFoods()">
@@ -31,7 +31,7 @@
                         <ul>
                             <button @click="removeOrd(order)" id="button2">Delete order</button>
                             <li>Order number: {{order.getOrderNumber()}}</li>
-                            <li>Table: {{order.getTables()}}</li>
+                            <li>Table: {{order.printTables()}}</li>
                             <li>Food
                                 <ul>
                                     <li v-for="food in order.getFoods()">
@@ -52,7 +52,7 @@
                   
                         <ul>
                             <li>Order number: {{order.getOrderNumber()}}</li>
-                            <li>Table: {{order.getTables()}}</li>
+                            <li>Table: {{order.printTables()}}</li>
                             <li>Food
                                 <ul>
                                     <li v-for="food in order.getFoods()">
@@ -99,6 +99,7 @@
          setSuccessVisible(value) {
              this.successVisible = value;
          },
+        
          onOrders(newOrders) {
              this.allOrders = newOrders;
              this.filterOrders();

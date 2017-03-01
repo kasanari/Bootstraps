@@ -58,6 +58,10 @@ class Order {
     setTables(tables) {
         this._tables = tables;
     }
+    
+     printTables() {
+           return Object.keys(this._tables).join(", ");
+         }
 
     getFoods() {
         return this._foods;
@@ -86,6 +90,8 @@ class Order {
     getTables() {
         return this._tables;
     }
+    
+    
     
     setStatus(status) {
         this._status=status;

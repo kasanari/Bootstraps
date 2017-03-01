@@ -52,7 +52,7 @@
     
     .active {
         color: ghostwhite; 
-        background-color: rgba(39, 174, 96,1.0);
+        background-color: #2980b9;
 
 
     }

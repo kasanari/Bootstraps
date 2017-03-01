@@ -18,7 +18,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <button @click="setStatus(order, 1)" id="button">Pick up order</button>
+                                <button @click="setStatus(order, 1)" id="button">Start order</button>
                             </ul>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <button @click="setStatus(order, 1)" id="button">Start order</button>
+                            <button @click="printOrder(order)">Finish and print order</button>
                         </ul>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <button @click="printOrder(order)">Print order</button>
+                            <button @click="pickupOrder(order)">Complete order</button>
                         </ul>
                     </div>
                 </div>

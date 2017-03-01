@@ -32,16 +32,16 @@
 }
 
 .slide-to-upper-right-enter-active {
-    transition: transform 2s;
+    transition: transform 0.75s;
     position: absolute;
     display: initial;
 }
 
 .slide-to-upper-right-enter {
-    transform: scale(1) translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 .slide-to-upper-right-enter-to {
-    transform: scale(1) translate3d(calc(100vw - 110%), 0, 0);
+    transform: translate3d(calc(100vw), 0, 0);
 }
 
 .container {

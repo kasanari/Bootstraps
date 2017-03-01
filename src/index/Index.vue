@@ -28,13 +28,13 @@
 
 #sidebar {
     width: 1px;
-    flex-grow: 2;
+    flex-grow: 3;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
     z-index: 2;
 }
 
 #menu-area {
     width: 1px;
-    flex-grow: 9;
+    flex-grow: 11;
 }
 </style>

@@ -4,9 +4,7 @@
         <div class="section">
             <h3>Waiting orders: {{ this.waitingOrders.length -this.noFoodOrders.length}}</h3>
             <div class="column" id="waiting">
-                <div v-for="order in waitingOrders">
-                    <div v-if="hasFood(order)">
-                        <div id="order">
+                <div id="order" v-for="order in waitingOrders" v-if="hasFood(order)">
                             <ul>
                                 <button @click="removeOrd(order)" id="button2">Delete order</button>
                                 <li>Order number: {{order.getOrderNumber()}}</li>
@@ -21,18 +19,18 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <button @click="setStatus(order, 1)" id="button">Pick up order</button>
+                                <button @click="setStatus(order, 1)" id="button">Start order</button>
                             </ul>
                         </div>
-                    </div>
-                </div>
+                    
+              
             </div>
         </div>
         <div class="section">
             <h3>Ongoing orders: {{ this.ongoingOrders.length }}</h3>
             <div class="column" id="ongoing">    
-                <div v-for="order in ongoingOrders">
-                    <div id="order">
+                <div id="order" v-for="order in ongoingOrders">
+                    
                         <ul>
                             <button @click="removeOrd(order)" id="button2">Delete order</button>
                             <li>Order number: {{order.getOrderNumber()}}</li>
@@ -44,17 +42,17 @@
                                     </li>
                                 </ul>
                             </li>
-                            <button @click="setStatus(order, 1)" id="button">Start order</button>
+                            <button @click="printOrder(order)">Finish and print order</button>
                         </ul>
-                    </div>
+                   
                 </div>
             </div>
         </div>
         <div class="section">
             <h3>Ready orders: {{ this.readyOrders.length }}</h3>
             <div class="column" id="ready"> 
-                <div v-for="order in readyOrders">
-                    <div id="order">
+                <div id="order" v-for="order in readyOrders">
+                  
                         <ul>
                             <li>Order number: {{order.getOrderNumber()}}</li>
                             <li>Table: {{order.getTables()}}</li>
@@ -65,9 +63,9 @@
                                     </li>
                                 </ul>
                             </li>
-                            <button @click="printOrder(order)">Print order</button>
+                            <button @click="pickupOrder(order)">Complete order</button>
                         </ul>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -209,7 +207,7 @@
      padding: 10px;
      display: flex;
      flex-basis: 33%;
-     justify-content: space-between;
+     /*justify-content: space-between; */
      flex-shrink: 0;
  }
  
@@ -229,9 +227,9 @@
      
  }
  #order {
-     
+     font-size: 120%;
      border: solid 1px;
-     width: 200px;
+     width: 43%;
      margin: 5px;
      padding: 5px 5px 5px 5px;
      box-shadow:  1px 2px 3px black;
@@ -255,15 +253,6 @@
      color: white;
      margin-top: 2px;
      
- }
- 
- button {
-     background-color: green;
-     padding: 1em;
-     border: none;
-     border-radius: 2px;
-     color: white;
-     margin-top: 2px;
      
  }
  

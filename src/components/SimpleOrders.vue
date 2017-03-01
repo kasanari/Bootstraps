@@ -2,7 +2,7 @@
 <template>
     <div id="container">
         <div class="section">
-            <h3>Waiting orders: {{ this.waitingOrders.length }}</h3>
+            <h3>Waiting orders: {{ this.waitingOrders.length -this.noFoodOrders.length}}</h3>
             <div class="column" id="waiting">
                 <div v-for="order in waitingOrders">
                     <div v-if="hasFood(order)">
@@ -90,6 +90,7 @@
              waitingOrders: [],
              ongoingOrders: [],
              readyOrders: [],
+             noFoodOrders: [],
              successVisible: false
          }
      },
@@ -109,6 +110,7 @@
              this.waitingOrders = this.allOrders.filter((order) => order.getStatus() === STATUS.waiting);
              this.ongoingOrders = this.allOrders.filter((order) => order.getStatus() === STATUS.ongoing);
              this.readyOrders = this.allOrders.filter((order) => order.getStatus() === STATUS.ready);
+             this.noFoodOrders = this.allOrders.filter((order) => order.getFoods().length===0);
          },
          getFoodLabel(food) {
              let menu = this.clientAPI.getMenu();
@@ -172,6 +174,8 @@
 
  #container {
      display: flex;
+     height: 100%;
+     overflow: auto;
  }    
  
  ul {

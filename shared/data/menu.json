@@ -7,7 +7,7 @@
                 { "label": "Extra onion", "default": false },
                 { "label": "Extra cheese", "default": false }
             ],
-            "img": "http://lorempixel.com/200/200/food//?random&pic=0",
+            "img": "/imgs/cheeseburger.jpg",
             "price": 40
         },
         {
@@ -18,7 +18,7 @@
                 { "label": "Extra onion", "default": false },
                 { "label": "Extra truffle", "default": false }
             ],
-            "img": "http://lorempixel.com/200/200/food//?random&pic=1",
+            "img": "/imgs/veggieburger.jpg",
             "price": 40
 
         },
@@ -27,49 +27,65 @@
             "label": "Pommes frités",
             "customizable": true,
             "options": [
-                { "label": "Extra onion", "default": false }
+                { "label": "No mayo", "default": false }
             ],
-            "img": "http://lorempixel.com/200/200/food//?random&pic=2",
+            "img": "/imgs/pommes.jpg",
             "price": 40
-
         },
         {
             "_id": 4,
-            "label": "test burger 4",
+            "label": "Nachos",
             "customizable": true,
             "options": [
-                { "label": "Extra onion", "default": false }
+                { "label": "Extra cheese", "default": false }
             ],
-            "img": "http://lorempixel.com/200/200/food//?random&pic=3",
+            "img": "/imgs/nachos.jpg",
             "price": 40
 
         },
         {
             "_id": 5,
-            "label": "test burger 5",
+            "label": "Pizza",
             "customizable": true,
             "options": [
-                { "label": "Extra onion", "default": false }
+                { "label": "No olives", "default": false }
             ],
-            "img": "http://lorempixel.com/200/200/food//?random&pic=4",
+            "img": "/imgs/pizza.jpg",
             "price": 40
-
         }
-
-
-
     ],
     "drinks": [{
             "_id": 1,
-            "label": "Coke",
-            "img": "http://lorempixel.com/200/200/food//?random&pic=5",
+            "label": "Soda",
+            "img": "/imgs/soda.jpg",
             "price": 40
 
         },
         {
             "_id": 2,
             "label": "Beer",
-            "img": "http://lorempixel.com/200/200/food//?random&pic=6",
+            "img": "/imgs/beer.jpg",
+            "price": 40
+
+        },
+        {
+            "_id": 3,
+            "label": "Cider",
+            "img": "/imgs/cider.jpg",
+            "price": 30
+
+        },
+        {
+            "_id": 4,
+            "label": "Shot",
+            "img": "/imgs/shot.jpg",
+            "price": 45
+
+        },
+        {
+            "_id": 5,
+            "label": "Wine",
+            "img": "/imgs/wine.jpg",
             "price": 40
 
         }

@@ -19,6 +19,7 @@ app.set('port', (process.env.PORT || port));
 var compiler = webpack(webpackConfig);
 var devMiddleware = webpackMiddleware(compiler, {
   publicPath: webpackConfig.output.publicPath,
+  index: 'views/index.html',
   quiet: false
 });
 var hotMiddleware = webpackHotMiddleware(compiler);

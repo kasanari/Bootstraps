@@ -50,7 +50,8 @@
 
 .item-note {
     font-size: 0.8em;
-    color: rgba(150, 150, 150, 0.7);
+    font-weight: bold;
+    color: rgba(220, 80, 80, 0.8);
 }
 
 .item:hover {

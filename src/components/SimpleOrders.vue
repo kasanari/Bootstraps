@@ -17,7 +17,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <button @click="setStatus(order, 1)" id="button">Pick up order</button>
+                            <button @click="setStatus(order, 1)" id="button">Start order</button>
                         </ul>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <button @click="setStatus(order, 2)">Finish up order</button>
+                        <button @click="printOrder(order)">Finish and print order</button>
                     </ul>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <button @click="printOrder(order)">Print order</button>
+                        <button @click="pickupOrder(order)">Complete order</button>
                     </ul>
                 </div>
             </div>
@@ -137,11 +137,13 @@ export default {
             // Emulate success message
             this.setSuccessVisible(true);
 
-            this.clientAPI.removeOrder(order);
+            order.setStatus(2);
+            this.clientAPI.updateOrder(order);
+        },
+
+        pickupOrder(order) {
             order.setStatus(3);
             this.clientAPI.updateOrder(order);
-            //this.serverAPI.removeOrder(order);
-
         },
 
         removeOrd(order) {

@@ -19,7 +19,7 @@
         </notification>
         <notification type="error" :visible="failVisible" @requestHide="setFailVisible(false)">
             <p slot="title">Error</p>
-            <p>Order could not be sent to kitchen</p>
+            <p>{{ errorMsg }}</p>
         </notification>
     </div>
     
@@ -87,7 +87,8 @@ export default {
             successVisible: false,
             failVisible: false,
             order: this.clientAPI.getOrder(),
-            sentOrder: null
+            sentOrder: null,
+            errorMsg: ''
         }
     },
     created() {
@@ -108,8 +109,12 @@ export default {
         },
         sendOrder() {
             
-            if (this.isObjectEmpty(this.tables) || this.clientAPI.getOrder().hasNothing()) {
+            if (this.clientAPI.getOrder().hasNothing()) {
                 this.setFailVisible(true);
+                this.errorMsg = "You can't send an empty order";
+            } else if (this.isObjectEmpty(this.tables)) {
+                this.setFailVisible(true);
+                this.errorMsg = "You have to choose a table";
             } else {
                 this.sentOrder = this.order;
                 this.printOrder();

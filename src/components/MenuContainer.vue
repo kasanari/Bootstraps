@@ -49,7 +49,8 @@ export default {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-around;
+    height: 100%;
     align-items: stretch;
     margin: 0;
     padding: 0;

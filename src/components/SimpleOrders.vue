@@ -38,7 +38,10 @@
                             <li>Food
                                 <ul>
                                     <li v-for="food in order.getFoods()">
-                                        {{getFoodLabel(food)}}
+                                        {{getFoodLabel(food)}}  x 
+                                            {{food.getQty() }} 
+                                            {{food.getNote() }}
+                                            {{food.getOptions()}}
                                     </li>
                                 </ul>
                             </li>
@@ -59,7 +62,10 @@
                             <li>Food
                                 <ul>
                                     <li v-for="food in order.getFoods()">
-                                        {{getFoodLabel(food)}}
+                                        {{getFoodLabel(food)}} x 
+                                            {{food.getQty() }} 
+                                            {{food.getNote() }}
+                                            {{food.getOptions()}}
                                     </li>
                                 </ul>
                             </li>

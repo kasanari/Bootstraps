@@ -14,8 +14,7 @@
                                         <li v-for="food in order.getFoods()">
                                             {{getFoodLabel(food)}}  x 
                                             {{food.getQty() }} 
-                                            {{food.getNote() }}
-                                            {{food.getOptions()}}
+                                            {{getSpecialLabel(food)}}
                                         </li>
                                     </ul>
                                 </li>
@@ -171,6 +170,13 @@
 
          hasFood(order) {
              return (order.getFoods().length > 0);
+         },
+
+         getSpecialLabel(food) {
+             const arr = [];
+             arr.push(food.getNote());
+             food.getOptions().forEach((option) => arr.push(option._label));
+             return arr.join(', ');
          }
 
      }
